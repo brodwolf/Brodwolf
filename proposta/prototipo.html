@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Protótipo do app</title>
+<!--
+  Protótipo provisório. Substitua este arquivo pelo HTML do protótipo real
+  (mesmo nome: prototipo.html). A página da proposta carrega ele num iframe de
+  390 × 844 px; se o seu tiver outro tamanho, ajuste PROTO_W e PROTO_H no index.html.
+-->
+<style>
+  :root {
+    --teal: #1b4f56; --teal-2: #2b6c74; --teal-soft: #e4eeee;
+    --ink: #142326; --ink-2: #55666a; --ink-3: #8a979a;
+    --line: #e3e8e7; --bg: #f7f8f6; --card: #ffffff; --star: #c98a1b;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: transparent; }
+  body { font: 14px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; padding: 0; }
+  .phone { width: 390px; height: 844px; border-radius: 56px; background: #0d1213; padding: 11px; }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 46px; overflow: hidden; background: var(--bg); }
+  .status { position: absolute; inset: 0 0 auto; height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; font-weight: 600; font-size: 15px; z-index: 5; }
+  .island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 120px; height: 34px; border-radius: 20px; background: #000; z-index: 6; }
+  .status-icons { display: flex; gap: 6px; align-items: center; }
+  .home-bar { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: var(--ink); opacity: .85; z-index: 6; }
+
+  .view { position: absolute; inset: 0; padding: 58px 20px 34px; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: none; }
+  .view::-webkit-scrollbar { display: none; }
+  .view[hidden] { display: none; }
+  .fade { animation: fade .25s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .fade { animation: none; } }
+
+  .topline { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--ink-3); margin-bottom: 14px; }
+  .link { color: var(--teal-2); font-weight: 600; }
+  .ill { position: relative; height: 330px; border-radius: 24px; background: var(--teal-soft); overflow: hidden; flex: none; }
+  .ill svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .float-card { position: absolute; left: 16px; right: 16px; bottom: 18px; background: var(--card); border-radius: 16px; padding: 12px; display: flex; gap: 10px; align-items: center; box-shadow: 0 8px 24px rgba(20,35,38,.12); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--card); font-size: 12px; font-weight: 600; }
+  .ill .chip { position: absolute; left: 16px; top: 16px; box-shadow: 0 4px 12px rgba(20,35,38,.1); }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; color: #fff; flex: none; }
+  .title { font-size: 28px; line-height: 1.1; font-weight: 700; letter-spacing: -.02em; margin: 26px 0 10px; }
+  .text { color: var(--ink-2); font-size: 14px; line-height: 1.5; margin: 0; }
+  .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 20px; }
+  .dots { display: flex; gap: 6px; }
+  .dots i { width: 6px; height: 6px; border-radius: 3px; background: var(--line); transition: width .2s; }
+  .dots i.on { width: 20px; background: var(--teal); }
+  .btn { background: var(--teal); color: #fff; font-weight: 600; border-radius: 14px; padding: 14px 26px; }
+  .btn.block { width: 100%; padding: 16px; font-size: 15px; }
+  .btn.ghost { background: var(--teal-soft); color: var(--teal); }
+
+  .hello { font-size: 13px; color: var(--ink-3); }
+  .h1 { font-size: 24px; font-weight: 700; letter-spacing: -.02em; margin: 2px 0 12px; }
+  .search { display: flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; color: var(--ink-3); margin: 14px 0 20px; }
+  .sec { display: flex; justify-content: space-between; align-items: baseline; margin: 4px 0 10px; }
+  .sec b { font-size: 16px; }
+  .sec span { font-size: 12px; color: var(--teal-2); font-weight: 600; }
+  .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 22px; }
+  .cat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; }
+  .cat svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .pro { display: flex; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px; margin-bottom: 10px; text-align: left; width: 100%; }
+  .pro .meta { flex: 1; min-width: 0; }
+  .pro .name { font-weight: 700; }
+  .pro .sub { font-size: 12px; color: var(--ink-3); }
+  .pro .price { font-size: 12px; text-align: right; color: var(--ink-2); }
+  .pro .price b { display: block; color: var(--ink); font-size: 14px; }
+  .star { color: var(--star); }
+  .tabs { position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: var(--card); border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 8px 26px; z-index: 4; }
+  .tabs button { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 10px; color: var(--ink-3); font-weight: 600; }
+  .tabs button.on { color: var(--teal); }
+  .tabs svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .with-tabs { padding-bottom: 96px; }
+
+  .back { display: flex; align-items: center; gap: 4px; font-weight: 600; color: var(--teal-2); margin-bottom: 14px; align-self: flex-start; }
+  .profile { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; margin-bottom: 18px; }
+  .profile .avatar { width: 76px; height: 76px; font-size: 24px; margin-bottom: 6px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px 6px; margin-bottom: 18px; text-align: center; }
+  .stats b { display: block; font-size: 16px; }
+  .stats span { font-size: 11px; color: var(--ink-3); }
+  .box { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
+  .row { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
+  .row:first-of-type { border-top: 0; }
+  .review { font-size: 13px; color: var(--ink-2); }
+  .review b { color: var(--ink); }
+  .sticky-cta { position: sticky; bottom: 0; padding-top: 12px; background: linear-gradient(transparent, var(--bg) 30%); margin-top: auto; }
+
+  .label { font-size: 12px; font-weight: 700; color: var(--ink-2); margin: 14px 0 6px; }
+  .field { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; font-size: 14px; }
+  textarea.field { width: 100%; resize: none; height: 84px; font: inherit; color: var(--ink); }
+  .opts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .opt { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 8px 14px; font-size: 13px; font-weight: 600; }
+  .opt.on { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .note { font-size: 12px; color: var(--ink-3); margin: 10px 0 0; }
+
+  .done { align-items: center; justify-content: center; text-align: center; }
+  .check { width: 72px; height: 72px; border-radius: 50%; background: var(--teal-soft); display: grid; place-items: center; margin-bottom: 18px; }
+  .os { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; background: var(--card); border: 1px dashed var(--ink-3); border-radius: 10px; padding: 8px 12px; margin: 16px 0 24px; color: var(--ink-2); }
+  .status-pill { font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 999px; background: #fbf1df; color: #8a5a0b; white-space: nowrap; }
+  .status-pill.ok { background: var(--teal-soft); color: var(--teal); }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="screen">
+    <div class="island"></div>
+    <div class="status">
+      <span>9:41</span>
+      <span class="status-icons" aria-hidden="true">
+        <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="currentColor"/><rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+        <svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><rect x="24" y="4" width="1.5" height="4" rx=".75" fill="currentColor" opacity=".5"/></svg>
+      </span>
+    </div>
+
+    <!-- Boas-vindas -->
+    <section class="view fade" id="v-onb">
+      <div class="topline"><span id="onb-count">1 de 4</span><button class="link" data-go="home">Pular</button></div>
+      <div class="ill">
+        <svg viewBox="0 0 348 330" aria-hidden="true">
+          <g stroke="#c9dcdc" stroke-width="10" fill="none" stroke-linecap="round">
+            <path d="M-10 80 C 80 100, 140 40, 360 70"/><path d="M-10 190 C 90 170, 200 230, 360 180"/><path d="M110 -10 C 120 120, 80 200, 130 340"/><path d="M250 -10 C 230 100, 280 220, 240 340"/>
+          </g>
+          <g id="pins"></g>
+        </svg>
+        <span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1b4f56" stroke-width="2.4"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Vila Madalena, São Paulo</span>
+        <div class="float-card" id="onb-card"></div>
+      </div>
+      <h1 class="title" id="onb-title"></h1>
+      <p class="text" id="onb-text"></p>
+      <div class="foot"><div class="dots" id="onb-dots"><i></i><i></i><i></i><i></i></div><button class="btn" id="onb-next">Próximo</button></div>
+    </section>
+
+    <!-- Início -->
+    <section class="view with-tabs fade" id="v-home" hidden>
+      <div class="hello">Olá, Ana</div>
+      <div class="h1">Do que sua casa precisa hoje?</div>
+      <span class="chip" style="align-self:flex-start;border:1px solid var(--line)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1b4f56" stroke-width="2.4"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Vila Madalena, São Paulo</span>
+      <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Buscar serviço ou profissional</div>
+      <div class="sec"><b>Categorias</b><span>Ver todas</span></div>
+      <div class="cats" id="cats"></div>
+      <div class="sec"><b>Perto de você</b><span>Mapa</span></div>
+      <div id="pros"></div>
+    </section>
+
+    <!-- Perfil do profissional -->
+    <section class="view fade" id="v-pro" hidden>
+      <button class="back" data-go="home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>Voltar</button>
+      <div class="profile" id="pro-head"></div>
+      <div class="stats" id="pro-stats"></div>
+      <div class="box"><b>Serviços e preços de referência</b><div id="pro-services" style="margin-top:6px"></div></div>
+      <div class="box review"><b>Juliana R.</b> <span class="star">★★★★★</span><br>Chegou no horário, explicou o problema e deixou tudo limpo. Recomendo.</div>
+      <div class="sticky-cta"><button class="btn block" data-go="order">Pedir orçamento</button></div>
+    </section>
+
+    <!-- Ordem de serviço -->
+    <section class="view fade" id="v-order" hidden>
+      <button class="back" data-go="pro"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>Voltar</button>
+      <div class="h1" style="margin-bottom:0">Pedir orçamento</div>
+      <div class="text" id="order-to"></div>
+      <div class="label">O que precisa ser feito?</div>
+      <textarea class="field" id="order-desc">Vazamento embaixo da pia da cozinha. Começou ontem.</textarea>
+      <div class="label">Quando?</div>
+      <div class="opts" data-group="when"><button class="opt on">Hoje</button><button class="opt">Amanhã</button><button class="opt">Escolher data</button></div>
+      <div class="label">Endereço</div>
+      <div class="field">Rua Fradique Coutinho, 1200, ap. 42</div>
+      <div class="label">Pagamento pelo app</div>
+      <div class="opts" data-group="pay"><button class="opt on">Pix</button><button class="opt">Cartão de crédito</button></div>
+      <p class="note">Você só paga depois de aprovar o orçamento. O valor fica retido até o serviço ser concluído.</p>
+      <div class="sticky-cta"><button class="btn block" data-go="done">Enviar pedido</button></div>
+    </section>
+
+    <!-- Pedido enviado -->
+    <section class="view done fade" id="v-done" hidden>
+      <div class="check"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1b4f56" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+      <div class="h1" style="margin:0 0 6px">Pedido enviado</div>
+      <p class="text" id="done-text"></p>
+      <div class="os">Ordem de serviço nº 2481</div>
+      <button class="btn block" data-go="orders">Ver meus pedidos</button>
+      <button class="btn block ghost" style="margin-top:10px" data-go="home">Voltar ao início</button>
+    </section>
+
+    <!-- Pedidos -->
+    <section class="view with-tabs fade" id="v-orders" hidden>
+      <div class="h1">Meus pedidos</div>
+      <div id="orders"></div>
+    </section>
+
+    <nav class="tabs" id="tabs" hidden>
+      <button data-go="home" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</button>
+      <button data-go="orders" data-tab="orders"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Pedidos</button>
+      <button><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>Mensagens</button>
+      <button><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Perfil</button>
+    </nav>
+    <div class="home-bar"></div>
+  </div>
+</div>
+
+<script>
+  const PROS = [
+    { id: 0, name: 'Marcos Oliveira', role: 'Encanador', color: '#2b6c74', rating: '4,9', jobs: 86, km: '1,8 km', from: 120,
+      services: [['Conserto de vazamento', 'R$ 120'], ['Troca de torneira', 'R$ 90'], ['Desentupimento', 'R$ 160']] },
+    { id: 1, name: 'Patrícia Souza', role: 'Eletricista', color: '#8a5a0b', rating: '4,8', jobs: 64, km: '2,4 km', from: 140,
+      services: [['Troca de tomada', 'R$ 80'], ['Instalação de chuveiro', 'R$ 150'], ['Revisão do quadro', 'R$ 220']] },
+    { id: 2, name: 'Rosana Lima', role: 'Diarista', color: '#5b4a86', rating: '5,0', jobs: 132, km: '0,9 km', from: 180,
+      services: [['Diária até 8 h', 'R$ 180'], ['Limpeza pós-obra', 'R$ 320'], ['Passar roupa (3 h)', 'R$ 110']] },
+    { id: 3, name: 'Diego Ramos', role: 'Montador de móveis', color: '#3f6a3a', rating: '4,7', jobs: 41, km: '3,1 km', from: 100,
+      services: [['Guarda-roupa 6 portas', 'R$ 260'], ['Cama ou rack', 'R$ 100'], ['Fixar prateleiras', 'R$ 90']] }
+  ];
+  const CATS = [
+    ['Encanador', '<path d="M4 14h8a3 3 0 0 0 3-3V4M15 4h4M12 14v6M9 20h6"/>'],
+    ['Eletricista', '<path d="M13 3 5 14h6l-1 7 8-11h-6z"/>'],
+    ['Diarista', '<path d="M7 21h10M9 21l1-9h4l1 9M12 12V3"/>'],
+    ['Pintor', '<rect x="4" y="3" width="13" height="6" rx="1.5"/><path d="M17 6h3v5h-8v3M11 14h2v7h-2z"/>'],
+    ['Montador', '<path d="m14 6 4 4M4 20l9-9M12 4l8 8-3 3-8-8z"/>'],
+    ['Jardineiro', '<path d="M12 21V11M12 11C12 6 8 4 4 4c0 5 3 7 8 7zM12 13c0-4 3-6 8-6 0 4-3 6-8 6z"/>']
+  ];
+  const ONB = [
+    ['Encontre profissionais perto de você', 'Encanadores, eletricistas, diaristas e muito mais, atendendo no seu bairro.'],
+    ['Peça orçamento sem compromisso', 'Descreva o que precisa, mande fotos e receba o valor antes de fechar.'],
+    ['Pague pelo app com segurança', 'Pix ou cartão. O valor só é liberado ao profissional quando o serviço termina.'],
+    ['Avalie e ajude a vizinhança', 'Sua avaliação mostra para outros clientes quem faz um bom trabalho.']
+  ];
+  const initials = n => n.split(' ').map(p => p[0]).slice(0, 2).join('');
+  const $ = s => document.querySelector(s);
+  let current = PROS[0], step = 0;
+
+  function avatar(p, extra = '') { return `<span class="avatar" style="background:${p.color}" ${extra}>${initials(p.name)}</span>`; }
+
+  function renderOnb() {
+    const [t, x] = ONB[step];
+    $('#onb-count').textContent = `${step + 1} de ${ONB.length}`;
+    $('#onb-title').textContent = t;
+    $('#onb-text').textContent = x;
+    $('#onb-next').textContent = step === ONB.length - 1 ? 'Começar' : 'Próximo';
+    document.querySelectorAll('#onb-dots i').forEach((d, i) => d.classList.toggle('on', i === step));
+    const p = PROS[step];
+    $('#onb-card').innerHTML = `${avatar(p)}<div style="flex:1"><b>${p.name}</b><div style="font-size:12px;color:var(--ink-3)">${p.role} · <span class="star">★</span> ${p.rating}</div></div><span style="font-size:12px;color:var(--ink-2)">${p.km}</span>`;
+    const spots = [[90, 120], [230, 95], [170, 190], [270, 210]];
+    $('#pins').innerHTML = spots.map(([x, y], i) => `<g transform="translate(${x} ${y})" opacity="${i === step ? 1 : .45}"><path d="M0 0c-9-11-14-17-14-24a14 14 0 0 1 28 0c0 7-5 13-14 24z" fill="${PROS[i].color}"/><circle cy="-24" r="5" fill="#fff"/></g>`).join('');
+  }
+
+  function renderHome() {
+    $('#cats').innerHTML = CATS.map(([n, d]) => `<div class="cat"><svg viewBox="0 0 24 24">${d}</svg>${n}</div>`).join('');
+    $('#pros').innerHTML = PROS.map(p => `<button class="pro" data-pro="${p.id}">${avatar(p)}<div class="meta"><div class="name">${p.name}</div><div class="sub">${p.role} · <span class="star">★</span> ${p.rating} · ${p.km}</div></div><div class="price">a partir de<b>R$ ${p.from}</b></div></button>`).join('');
+  }
+
+  function renderPro() {
+    const p = current;
+    $('#pro-head').innerHTML = `${avatar(p)}<div class="h1" style="margin:0">${p.name}</div><div class="text">${p.role} · Atende a ${p.km}</div>`;
+    $('#pro-stats').innerHTML = `<div><b><span class="star">★</span> ${p.rating}</b><span>avaliação</span></div><div><b>${p.jobs}</b><span>serviços</span></div><div><b>20 min</b><span>para responder</span></div>`;
+    $('#pro-services').innerHTML = p.services.map(([n, v]) => `<div class="row"><span>${n}</span><b>${v}</b></div>`).join('');
+    $('#order-to').textContent = `Para ${p.name}, ${p.role.toLowerCase()}`;
+    $('#done-text').textContent = `${p.name.split(' ')[0]} costuma responder em 20 minutos. Avisamos assim que o orçamento chegar.`;
+  }
+
+  let sent = false;
+  function renderOrders() {
+    const rows = [];
+    if (sent) rows.push([current, 'Aguardando orçamento', '', 'Hoje']);
+    rows.push([PROS[2], 'Concluído', 'ok', '12 out.']);
+    $('#orders').innerHTML = rows.map(([p, s, c, d]) => `<div class="pro">${avatar(p)}<div class="meta"><div class="name">${p.role}</div><div class="sub">${p.name} · ${d}</div></div><span class="status-pill ${c}">${s}</span></div>`).join('');
+  }
+
+  function go(view) {
+    if (view === 'done') sent = true;
+    document.querySelectorAll('.view').forEach(v => { v.hidden = v.id !== 'v-' + view; });
+    const tabs = view === 'home' || view === 'orders';
+    $('#tabs').hidden = !tabs;
+    document.querySelectorAll('[data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === view));
+    if (view === 'orders') renderOrders();
+    const v = $('#v-' + view); v.scrollTop = 0; v.classList.remove('fade'); void v.offsetWidth; v.classList.add('fade');
+  }
+
+  document.addEventListener('click', e => {
+    const g = e.target.closest('[data-go]'); if (g) { go(g.dataset.go); return; }
+    const p = e.target.closest('[data-pro]'); if (p) { current = PROS[+p.dataset.pro]; renderPro(); go('pro'); return; }
+    const o = e.target.closest('.opt'); if (o) { o.parentElement.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === o)); }
+  });
+  $('#onb-next').addEventListener('click', () => { if (step < ONB.length - 1) { step++; renderOnb(); } else go('home'); });
+
+  renderOnb(); renderHome(); renderPro();
+</script>
+</body>
+</html>
