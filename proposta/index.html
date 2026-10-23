@@ -1,60 +1,59 @@
-<title>Proposta App de Serviços</title>
+<title>Proposta Marketplace de Serviços</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-  /* Layout: documento de proposta à esquerda, protótipo fixo à direita como bancada de teste. */
+  /* Layout: documento da proposta à esquerda, protótipo fixo à direita como bancada de teste. Cores e fonte de texto vêm do próprio app. */
   :root {
-    --paper: #f3f5f4;
-    --surface: #ffffff;
-    --sunk: #e9eeed;
-    --ink: #132326;
-    --ink-2: #4a5b5e;
-    --ink-3: #6f7f82;
-    --line: #d9e1e0;
-    --accent: #18555c;
+    --paper: #f4f3ef;
+    --surface: #fcfcfa;
+    --sunk: #ecebe6;
+    --ink: #171717;
+    --ink-2: #55554f;
+    --ink-3: #7a7a74;
+    --line: #dddcd5;
+    --accent: #1f4e58;
     --accent-ink: #ffffff;
-    --accent-soft: #dcebea;
-    --pos: #1e6b45;
+    --accent-soft: #dfe8e7;
+    --pos: #2f6b4a;
     --neg: #a3412e;
+    --warn-bg: #f5ead6;
+    --warn-ink: #7a5212;
     --series-a: #008f9e;
     --series-b: #c0802a;
-    --stage: #e4eaea;
-    --shadow: 0 1px 2px rgba(19, 35, 38, .06), 0 8px 28px rgba(19, 35, 38, .08);
+    --shadow: 0 1px 2px rgba(23, 23, 23, .06), 0 10px 30px rgba(23, 23, 23, .08);
 
     --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
-    --f-body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --f-body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
     --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-    --wrap: 1240px;
+    --wrap: 1260px;
     --aside: 400px;
     --nav-h: 56px;
     --radius: 14px;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --paper: #0f1516; --surface: #162022; --sunk: #1c282a; --ink: #e6eeed; --ink-2: #a8b7b7; --ink-3: #82918f;
-      --line: #273436; --accent: #6cc0c7; --accent-ink: #0c1a1c; --accent-soft: #1b3336; --pos: #6fcf98; --neg: #f08a73;
-      --series-a: #1fa3ae; --series-b: #b97d26; --stage: #1a2426; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+      --paper: #0c0c0b; --surface: #151514; --sunk: #1c1c1a; --ink: #f2f1ec; --ink-2: #b0afa8; --ink-3: #8a8983;
+      --line: #2a2a27; --accent: #7fb0b9; --accent-ink: #0c1a1d; --accent-soft: #1a2a2d; --pos: #7fcf9e; --neg: #f08a73;
+      --warn-bg: #2e2412; --warn-ink: #e9c27a; --series-a: #1fa3ae; --series-b: #b97d26;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.4);
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --paper: #0f1516; --surface: #162022; --sunk: #1c282a; --ink: #e6eeed; --ink-2: #a8b7b7; --ink-3: #82918f;
-    --line: #273436; --accent: #6cc0c7; --accent-ink: #0c1a1c; --accent-soft: #1b3336; --pos: #6fcf98; --neg: #f08a73;
-    --series-a: #1fa3ae; --series-b: #b97d26; --stage: #1a2426; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    --paper: #0c0c0b; --surface: #151514; --sunk: #1c1c1a; --ink: #f2f1ec; --ink-2: #b0afa8; --ink-3: #8a8983;
+    --line: #2a2a27; --accent: #7fb0b9; --accent-ink: #0c1a1d; --accent-soft: #1a2a2d; --pos: #7fcf9e; --neg: #f08a73;
+    --warn-bg: #2e2412; --warn-ink: #e9c27a; --series-a: #1fa3ae; --series-b: #b97d26;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.4);
     color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font: 400 16px/1.6 var(--f-body);
-    -webkit-font-smoothing: antialiased;
-  }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
   body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--paper); }
   table { font-size: inherit; border-collapse: collapse; }
   a { color: var(--accent); text-underline-offset: 3px; }
@@ -64,6 +63,7 @@
   h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.1rem); line-height: 1.15; }
   h3 { font-size: 1.15rem; line-height: 1.3; }
   p { margin: 0; }
+  ul { margin: 0; }
   .num { font-variant-numeric: tabular-nums; }
 
   .gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
@@ -73,27 +73,24 @@
   .masthead { padding-block: 28px 8px; }
   .masthead .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: .95rem; }
-  .brand-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); display: grid; place-items: center; }
+  .brand-mark { width: 28px; height: 28px; border-radius: 8px; background: #1f4e58; display: grid; place-items: center; color: #fff; }
   .brand-mark svg { width: 16px; height: 16px; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface);
-    border-radius: 999px; padding: 8px 16px; font-weight: 500; font-size: .92rem; cursor: pointer; color: var(--ink); text-decoration: none;
-  }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 8px 16px; font-weight: 500; font-size: .92rem; cursor: pointer; color: var(--ink); text-decoration: none; }
   .btn:hover { border-color: var(--ink-3); }
   .btn svg { width: 16px; height: 16px; flex: none; }
-  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
   .btn.icon { padding: 8px; }
 
-  .hero { padding-block: 32px 40px; }
-  .hero .wrap { display: grid; gap: 28px; }
-  .hero h1 { font-size: clamp(2.2rem, 1.4rem + 3.2vw, 3.6rem); line-height: 1.02; letter-spacing: -.03em; max-width: 16ch; }
-  .hero .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 60ch; }
+  .hero { padding-block: 32px 44px; }
+  .hero .wrap { display: grid; gap: 26px; }
+  .hero h1 { font-size: clamp(2.3rem, 1.4rem + 3.4vw, 3.8rem); line-height: 1.02; letter-spacing: -.03em; max-width: 15ch; }
+  .hero .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 62ch; }
   .meta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: .9rem; color: var(--ink-3); }
   .meta b { color: var(--ink); font-weight: 600; }
-  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; max-width: 820px; }
-  .fact { background: var(--surface); padding: 16px 18px; display: grid; gap: 4px; }
+  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; max-width: 860px; }
+  .fact { background: var(--surface); padding: 16px 18px; display: grid; gap: 2px; align-content: start; }
   .fact span { font-size: .82rem; color: var(--ink-3); }
-  .fact b { font-family: var(--f-display); font-weight: 650; font-size: 1.35rem; line-height: 1.2; }
+  .fact b { font-family: var(--f-display); font-weight: 650; font-size: 1.5rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .fact small { font-size: .82rem; color: var(--ink-2); }
   @media (max-width: 640px) { .facts { grid-template-columns: 1fr; } }
 
   /* Navegação fixa */
@@ -108,61 +105,67 @@
   .layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; padding-block: 40px 96px; }
   body[data-proto="docked"] .layout { grid-template-columns: minmax(0, 1fr) var(--aside); }
   @media (max-width: 1079px) { body[data-proto="docked"] .layout { grid-template-columns: minmax(0, 1fr); } }
-  main { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 72px; }
-  body:not([data-proto="docked"]) main { max-width: 860px; }
-  @media (max-width: 1079px) { main { max-width: 860px; } }
+  main { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 76px; }
+  body:not([data-proto="docked"]) main { max-width: 880px; }
+  @media (max-width: 1079px) { main { max-width: 880px; } }
 
   section.doc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; min-width: 0; }
   section.doc > header { display: grid; gap: 10px; }
-  .kicker { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
-  .prose { display: grid; gap: 14px; max-width: 66ch; color: var(--ink-2); }
-  .prose strong { color: var(--ink); font-weight: 600; }
-  .fill { display: inline-block; border: 1px dashed var(--ink-3); color: var(--ink-3); border-radius: 6px; padding: 0 6px; font-size: .88em; line-height: 1.5; white-space: nowrap; }
+  .prose { display: grid; gap: 14px; max-width: 68ch; color: var(--ink-2); }
+  .prose strong, .prose b { color: var(--ink); font-weight: 600; }
+  .bullets { display: grid; gap: 8px; padding-left: 1.2em; color: var(--ink-2); max-width: 68ch; }
+  .bullets li::marker { color: var(--ink-3); }
+  .bullets b { color: var(--ink); font-weight: 600; }
 
   .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
-  .pad { padding: 20px; }
-  @media (min-width: 720px) { .pad { padding: 24px 28px; } }
+  .callout { display: flex; gap: 12px; align-items: flex-start; padding: 14px 18px; border-radius: 12px; background: var(--sunk); color: var(--ink-2); font-size: .95rem; max-width: 72ch; }
+  .callout svg { width: 18px; height: 18px; flex: none; margin-top: 3px; color: var(--accent); }
+  .callout b { color: var(--ink); font-weight: 600; }
 
-  .feature-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
-  .feature-list > div { padding: 18px 20px; display: grid; gap: 6px; border-top: 1px solid var(--line); }
-  .feature-list > div:nth-child(-n+2) { border-top: 0; }
-  .feature-list > div:nth-child(odd) { border-right: 1px solid var(--line); }
-  .feature-list b { font-weight: 600; }
-  .feature-list p { color: var(--ink-2); font-size: .95rem; }
-  @media (max-width: 640px) {
-    .feature-list { grid-template-columns: 1fr; }
-    .feature-list > div:nth-child(2) { border-top: 1px solid var(--line); }
-    .feature-list > div:nth-child(odd) { border-right: 0; }
-  }
+  .sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sides > div { padding: 20px 22px; display: grid; gap: 8px; align-content: start; }
+  .sides > div + div { border-left: 1px solid var(--line); }
+  .sides b { font-family: var(--f-display); font-weight: 650; font-size: 1.1rem; }
+  .sides p { color: var(--ink-2); font-size: .97rem; }
+  @media (max-width: 640px) { .sides { grid-template-columns: 1fr; } .sides > div + div { border-left: 0; border-top: 1px solid var(--line); } }
+  .parts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .part { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: .9rem; font-weight: 500; }
+  .part svg { width: 16px; height: 16px; color: var(--accent); }
 
   /* Ordem de serviço */
-  .os-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 18px 24px; border-bottom: 1px dashed var(--line); font-size: .9rem; color: var(--ink-3); }
-  .os-head b { color: var(--ink); font-family: var(--f-mono); font-weight: 500; }
+  .os-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 24px; padding: 20px 24px; border-bottom: 1px dashed var(--line); }
+  .os-top .lbl { font-size: .82rem; color: var(--ink-3); }
+  .os-top .big { font-family: var(--f-display); font-weight: 650; font-size: 2.2rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .os-top .code { font-family: var(--f-mono); font-size: .8rem; color: var(--ink-3); }
   .table-scroll { overflow-x: auto; }
-  table.data { width: 100%; min-width: 520px; }
+  table.data { width: 100%; }
   table.data th, table.data td { text-align: left; padding: 12px 16px; border-top: 1px solid var(--line); vertical-align: top; }
-  table.data thead th { border-top: 0; font-size: .8rem; font-weight: 600; color: var(--ink-3); background: var(--sunk); }
+  table.data thead th { border-top: 0; font-size: .8rem; font-weight: 600; color: var(--ink-3); background: var(--sunk); white-space: nowrap; }
   table.data td.r, table.data th.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
   table.data tbody th { font-weight: 600; }
-  table.data td small { display: block; color: var(--ink-3); font-size: .85rem; line-height: 1.45; margin-top: 2px; }
+  table.data td small, table.data th small { display: block; color: var(--ink-3); font-size: .85rem; line-height: 1.45; margin-top: 2px; font-weight: 400; }
   table.data tfoot td, table.data tfoot th { font-weight: 600; background: var(--sunk); }
-  .step-n { font-family: var(--f-mono); font-size: .8rem; color: var(--ink-3); width: 2.5em; }
+  table.data .muted { color: var(--ink-2); }
+  table.data td b.lead { color: var(--ink); font-weight: 600; }
+  .t-wide { min-width: 720px; }
+  .t-mid { min-width: 560px; }
+  .freq { font-size: .78rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--sunk); color: var(--ink-2); white-space: nowrap; }
 
   /* Simulador */
-  .sim { display: grid; gap: 0; overflow: hidden; }
+  .sim { overflow: hidden; }
   .sim-controls { display: grid; gap: 22px; padding: 22px 20px; border-bottom: 1px solid var(--line); }
   @media (min-width: 720px) { .sim-controls { padding: 24px 28px; } }
   .presets { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   .presets span { font-size: .85rem; color: var(--ink-3); margin-right: 4px; }
-  .chip { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 6px 12px; font-size: .85rem; cursor: pointer; font-weight: 500; }
-  .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+  .chip { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 6px 12px; font-size: .85rem; cursor: pointer; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
   .sliders { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 28px; }
   @media (max-width: 760px) { .sliders { grid-template-columns: 1fr; } }
   .slider { display: grid; gap: 8px; min-width: 0; }
   .slider-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .slider label { font-size: .9rem; font-weight: 600; }
   .slider output { font-family: var(--f-display); font-weight: 650; font-size: 1.3rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .slider .range-ends { display: flex; justify-content: space-between; font-size: .75rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .range-ends { display: flex; justify-content: space-between; font-size: .75rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
   input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; background: transparent; cursor: pointer; margin: 0; --pct: 50%; }
   input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(to right, var(--accent) var(--pct), var(--line) var(--pct)); }
   input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: var(--line); }
@@ -172,7 +175,6 @@
   input[type="range"]:focus-visible { outline: none; }
   input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
   input[type="range"]:focus-visible::-moz-range-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
-
   details.tune { border-top: 1px dashed var(--line); padding-top: 14px; }
   details.tune summary { cursor: pointer; font-size: .9rem; font-weight: 600; color: var(--ink-2); list-style: none; display: flex; align-items: center; gap: 6px; }
   details.tune summary::-webkit-details-marker { display: none; }
@@ -182,7 +184,7 @@
   .hint { font-size: .8rem; color: var(--ink-3); line-height: 1.45; }
 
   .sim-result { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
-  @media (max-width: 820px) { .sim-result { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .sim-result { grid-template-columns: 1fr; } }
   .ledger { padding: 22px 20px; display: grid; gap: 2px; align-content: start; }
   @media (min-width: 720px) { .ledger { padding: 24px 28px; } }
   .ledger h3 { margin-bottom: 10px; }
@@ -190,19 +192,19 @@
   .lrow:first-of-type { border-top: 0; }
   .lrow .op { font-family: var(--f-mono); color: var(--ink-3); font-size: .9rem; }
   .lrow .what { min-width: 0; }
-  .lrow .what small { display: block; color: var(--ink-3); font-size: .82rem; line-height: 1.4; }
+  .lrow .what small { display: block; color: var(--ink-3); font-size: .82rem; line-height: 1.4; font-weight: 400; }
   .lrow .val { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
   .lrow.minus .val { color: var(--ink-2); }
   .lrow.sub { border-top: 1px solid var(--ink-3); }
   .lrow.sub .what, .lrow.sub .val { font-weight: 600; }
   .lrow.total { border-top: 2px solid var(--ink); margin-top: 4px; padding-top: 14px; }
   .lrow.total .what { font-weight: 600; font-size: 1.05rem; }
-  .lrow.total .val { font-family: var(--f-display); font-weight: 650; font-size: 2rem; line-height: 1; }
+  .lrow.total .val { font-family: var(--f-display); font-weight: 650; font-size: 2.1rem; line-height: 1; }
   .val.is-neg { color: var(--neg) !important; }
 
-  .side { background: var(--sunk); padding: 22px 20px; display: grid; gap: 16px; align-content: start; border-left: 1px solid var(--line); }
+  .side { background: var(--sunk); padding: 22px 20px; display: grid; gap: 18px; align-content: start; border-left: 1px solid var(--line); }
   @media (min-width: 720px) { .side { padding: 24px 28px; } }
-  @media (max-width: 820px) { .side { border-left: 0; border-top: 1px solid var(--line); } }
+  @media (max-width: 860px) { .side { border-left: 0; border-top: 1px solid var(--line); } }
   .kpi { display: grid; gap: 2px; }
   .kpi span { font-size: .82rem; color: var(--ink-3); }
   .kpi b { font-family: var(--f-display); font-weight: 650; font-size: 1.35rem; font-variant-numeric: tabular-nums; line-height: 1.25; }
@@ -212,13 +214,14 @@
   .verdict svg { width: 18px; height: 18px; flex: none; margin-top: 2px; }
   .verdict.good svg { color: var(--pos); }
   .verdict.warn svg { color: var(--neg); }
+  .verdict b { font-weight: 600; }
   .where { display: grid; gap: 8px; }
   .where-bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; gap: 2px; background: var(--surface); }
   .where-bar i { display: block; height: 100%; min-width: 2px; }
   .where-legend { display: grid; gap: 4px; font-size: .82rem; color: var(--ink-2); }
   .where-legend div { display: flex; align-items: center; gap: 8px; }
   .where-legend div b { margin-left: auto; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--ink); }
-  .sw { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .sw { width: 10px; height: 10px; border-radius: 3px; flex: none; display: inline-block; }
 
   .chart-block { border-top: 1px solid var(--line); padding: 22px 20px 18px; display: grid; gap: 12px; }
   @media (min-width: 720px) { .chart-block { padding: 24px 28px 20px; } }
@@ -230,28 +233,50 @@
   .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
   .chart text { font-family: var(--f-body); font-size: 12px; fill: var(--ink-3); font-variant-numeric: tabular-nums; }
   .chart .lbl { font-weight: 600; fill: var(--ink-2); }
-  .tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 10px; padding: 8px 10px; font-size: .82rem; line-height: 1.5; white-space: nowrap; transform: translate(-50%, -100%); }
+  .tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 10px; padding: 8px 10px; font-size: .82rem; line-height: 1.5; white-space: nowrap; transform: translate(-50%, -100%); z-index: 2; }
   .tip b { font-weight: 600; }
   .tip .tr { display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
-  .sens { border-top: 1px solid var(--line); }
+  details.sens { border-top: 1px solid var(--line); }
+  details.sens.panel { border-top: 1px solid var(--line); }
   .sens summary { padding: 14px 20px; cursor: pointer; font-size: .9rem; font-weight: 600; color: var(--ink-2); }
   @media (min-width: 720px) { .sens summary { padding: 14px 28px; } }
-  .sens table.data { min-width: 460px; }
+  #scen-table { min-width: 620px; }
+  #scen-table .cur { background: var(--accent-soft); }
   .disclaimer { padding: 14px 20px 20px; font-size: .85rem; color: var(--ink-3); border-top: 1px solid var(--line); }
   @media (min-width: 720px) { .disclaimer { padding: 14px 28px 22px; } }
 
-  /* Comparação de modelos */
-  .compare th[scope="col"] { width: 30%; }
+  /* Modelos */
+  .compare thead th:not(:first-child) { color: var(--ink); font-size: .9rem; }
+  .compare tbody th { width: 26%; }
+  .compare td { width: 37%; color: var(--ink-2); }
 
-  /* Listas */
+  /* Lojas */
+  .stores { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stores > div { padding: 20px 22px; display: grid; gap: 8px; align-content: start; }
+  .stores > div + div { border-left: 1px solid var(--line); }
+  .stores b { font-family: var(--f-display); font-weight: 650; font-size: 1.1rem; }
+  .stores p { color: var(--ink-2); font-size: .95rem; }
+  .stores .cost { font-family: var(--f-mono); font-size: .8rem; color: var(--ink-3); }
+  .stores .flag { display: inline-flex; justify-self: start; font-size: .75rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--warn-bg); color: var(--warn-ink); }
+  @media (max-width: 760px) { .stores { grid-template-columns: 1fr; } .stores > div + div { border-left: 0; border-top: 1px solid var(--line); } }
+
+  /* Perguntas */
+  .qcount { display: flex; gap: 8px; flex-wrap: wrap; }
   .qlist { list-style: none; margin: 0; padding: 0; display: grid; }
-  .qlist li { display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 4px 12px; padding: 16px 20px; border-top: 1px solid var(--line); }
-  .qlist li:first-child { border-top: 0; }
-  .qlist .qn { font-family: var(--f-mono); font-size: .8rem; color: var(--ink-3); padding-top: 3px; }
-  .qlist b { font-weight: 600; display: block; }
-  .qlist p { color: var(--ink-2); font-size: .95rem; }
-  .tag { display: inline-block; font-size: .72rem; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); margin-left: 6px; vertical-align: 2px; }
-  .refs { display: grid; gap: 8px; padding-left: 1.1em; margin: 0; color: var(--ink-2); }
+  .qlist > li { display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 4px 12px; padding: 18px 22px; border-top: 1px solid var(--line); }
+  .qlist > li:first-child { border-top: 0; }
+  .qn { font-family: var(--f-mono); font-size: .8rem; color: var(--ink-3); padding-top: 4px; }
+  .qhead { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+  .qhead b { font-weight: 600; font-size: 1.02rem; line-height: 1.4; }
+  .qbody { display: grid; gap: 6px; margin-top: 8px; color: var(--ink-2); font-size: .95rem; }
+  .qbody p b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 560px) { .qhead { flex-direction: column; gap: 6px; } }
+  .status { flex: none; font-size: .75rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+  .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .status.open { background: var(--warn-bg); color: var(--warn-ink); }
+  .status.done { background: var(--accent-soft); color: var(--pos); }
+  .refs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 28px; padding-left: 1.1em; margin: 0; color: var(--ink-2); font-size: .92rem; }
+  @media (max-width: 640px) { .refs { grid-template-columns: 1fr; } }
 
   /* Protótipo */
   aside.proto { position: sticky; top: calc(var(--nav-h) + 20px + env(safe-area-inset-top, 0px)); align-self: start; min-width: 0; }
@@ -260,9 +285,8 @@
   .proto-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
   .proto-bar h2 { font-size: 1.05rem; letter-spacing: 0; }
   .proto-bar .tools { display: flex; gap: 6px; }
-  .proto-stage { background: var(--stage); border-radius: 28px; padding: 18px; display: grid; place-items: center; border: 1px solid var(--line); }
-  .proto-fit { position: relative; overflow: hidden; border-radius: 0; }
-  .proto-fit iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: transparent; color-scheme: normal; }
+  .proto-stage { background: #e9e8e3; border-radius: 24px; overflow: hidden; border: 1px solid var(--line); }
+  .proto-stage iframe { display: block; width: 100%; height: 760px; border: 0; color-scheme: normal; background: #e9e8e3; }
   .proto-caption { font-size: .82rem; color: var(--ink-3); text-align: center; }
   .only-full { display: none; }
 
@@ -271,19 +295,18 @@
 
   body[data-proto="full"] { overflow: hidden; }
   body[data-proto="full"] .proto-panel {
-    position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
-    background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     padding: calc(16px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
   }
-  body[data-proto="full"] .proto-bar { width: min(100%, 520px); }
-  body[data-proto="full"] .proto-stage { background: transparent; border: 0; padding: 0; }
+  body[data-proto="full"] .proto-bar, body[data-proto="full"] .proto-stage { width: min(100%, 560px); }
   body[data-proto="full"] .only-full { display: inline-flex; }
   body[data-proto="full"] .only-docked { display: none; }
 
   .proto-pill {
     position: fixed; z-index: 40; right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px));
     display: none; align-items: center; gap: 10px; padding: 12px 18px 12px 14px; border-radius: 999px; border: 0; cursor: pointer;
-    background: var(--accent); color: var(--accent-ink); font-weight: 600; box-shadow: var(--shadow);
+    background: #1f4e58; color: #fff; font-weight: 600; box-shadow: var(--shadow);
   }
   .proto-pill svg { width: 20px; height: 20px; }
   body[data-proto="min"] .proto-pill { display: inline-flex; }
@@ -292,20 +315,18 @@
   .foot { padding-block: 28px 40px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: .88rem; }
 
   @media print {
-    .nav, aside.proto, .proto-pill, .print-btn, .presets { display: none !important; }
+    .nav, aside.proto, .proto-pill, .print-btn, .presets, details.tune { display: none !important; }
     body { background: #fff; }
     .layout { grid-template-columns: 1fr !important; padding-block: 0; }
     main { max-width: none !important; gap: 36px; }
-    section.doc { break-inside: auto; }
     .panel { break-inside: avoid; }
-    details > *:not(summary) { display: block !important; }
   }
 </style>
 
 <div class="masthead gutter">
   <div class="wrap">
     <div class="brand">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-ink)"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg></span>
       Proposta comercial
     </div>
     <button class="btn print-btn" id="print-btn" type="button" hidden>
@@ -317,17 +338,16 @@
 
 <header class="hero gutter">
   <div class="wrap">
-    <h1>App para contratar serviços de casa no bairro</h1>
-    <p class="lede">Clientes encontram encanadores, eletricistas, diaristas e outros profissionais perto de casa, pedem orçamento e pagam pelo app. A plataforma fica com uma parte de cada serviço. Ao lado você já pode testar o protótipo.</p>
+    <h1>Marketplace de serviços locais</h1>
+    <p class="lede">Um app que conecta quem precisa de um serviço a encanadores, eletricistas, diaristas, instaladores de ar-condicionado e outros profissionais da região, num único lugar, de forma simples, transparente e confiável. Ao lado está o protótipo para você testar.</p>
     <div class="meta">
-      <span>Cliente <b><span class="fill">nome do cliente</span></b></span>
       <span>Emitida em <b>22 de outubro de 2026</b></span>
-      <span>Válida por <b>30 dias</b></span>
+      <span>Por <b>Wilham</b></span>
     </div>
     <div class="facts">
-      <div class="fact"><span>Investimento no desenvolvimento</span><b><span class="fill">R$ a definir</span></b></div>
-      <div class="fact"><span>Prazo estimado</span><b><span class="fill">a definir</span></b></div>
-      <div class="fact"><span>Para manter no ar, por mês</span><b class="num" id="fact-fixed">a partir de ≈ R$ 204</b></div>
+      <div class="fact"><span>Desenvolvimento</span><b>R$ 5.000</b><small>App, painel administrativo e API</small></div>
+      <div class="fact"><span>Para manter no ar</span><b>≈ R$ 205 a 1.070</b><small>por mês, conforme o volume</small></div>
+      <div class="fact"><span>O investimento se paga em</span><b>≈ 3 meses</b><small>no cenário de R$ 20 mil em vendas por mês</small></div>
     </div>
   </div>
 </header>
@@ -336,11 +356,11 @@
   <ol>
     <li><a href="#resumo">Resumo do app</a></li>
     <li><a href="#ordem">Ordem de serviço</a></li>
-    <li><a href="#custos">Custos para manter</a></li>
+    <li><a href="#custos">Custos para manter o app</a></li>
     <li><a href="#precificacao">Modelos de precificação</a></li>
     <li><a href="#simulacao">Simulação mensal</a></li>
     <li><a href="#lojas">Apple e Google</a></li>
-    <li><a href="#perguntas">Pontos em aberto</a></li>
+    <li><a href="#perguntas">Perguntas e pontos em aberto</a></li>
     <li><a href="#premissas">Premissas e referências</a></li>
   </ol>
 </nav>
@@ -353,18 +373,24 @@
   <section class="doc" id="resumo">
     <header>
       <h2>Resumo do app</h2>
+      <p class="prose">Um marketplace mobile com dois lados: quem contrata e quem presta o serviço.</p>
     </header>
-    <div class="prose">
-      <p>São dois lados no mesmo app. O <strong>cliente</strong> procura um profissional pela categoria e pela distância, vê avaliações e preços de referência e pede um orçamento. O <strong>prestador</strong> recebe o pedido, responde com o valor e, depois do serviço, recebe o pagamento já separado da comissão da plataforma.</p>
-      <p>O pagamento passa pelo Asaas, que divide o valor automaticamente entre prestador e plataforma (split). Com isso a plataforma não precisa repassar dinheiro à mão nem guardar dados de cartão.</p>
+    <div class="panel sides">
+      <div>
+        <b>Contratante</b>
+        <p>Encontra profissionais por categoria e localização, vê perfis, avaliações, serviços e preços, solicita orçamentos, agenda horários e acompanha todo o serviço pelo aplicativo.</p>
+      </div>
+      <div>
+        <b>Prestador</b>
+        <p>Cria seu perfil profissional e cadastra serviços com preço fixo, por hora ou sob orçamento. Configura requisitos e adicionais, define agenda, áreas de atendimento e taxas de deslocamento, e recebe e gerencia as solicitações dos clientes.</p>
+      </div>
     </div>
-    <div class="panel feature-list">
-      <div><b>Busca por perto</b><p>Lista e mapa de profissionais por categoria e distância do endereço do cliente.</p></div>
-      <div><b>Pedido de orçamento</b><p>O cliente descreve o problema, escolhe a data e manda fotos. Cada pedido vira uma ordem de serviço numerada.</p></div>
-      <div><b>Pagamento com split</b><p>Pix ou cartão. A comissão fica com a plataforma e o restante cai na conta do prestador.</p></div>
-      <div><b>Avaliações</b><p>Nota e comentário depois de cada serviço concluído, visíveis no perfil do profissional.</p></div>
-      <div><b>App do prestador</b><p>Agenda, pedidos recebidos, histórico de ganhos e dados bancários para o repasse.</p></div>
-      <div><b>Painel da plataforma</b><p>Aprovação de cadastros, acompanhamento dos pedidos, suporte e relatórios de comissão.</p></div>
+    <p class="prose">A solução tem quatro partes:</p>
+    <div class="parts">
+      <span class="part"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Aplicativo mobile</span>
+      <span class="part"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M3 9h18"/></svg>Painel administrativo</span>
+      <span class="part"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg>API backend em NestJS</span>
+      <span class="part"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>Imagens no Cloudflare R2</span>
     </div>
   </section>
 
@@ -372,31 +398,31 @@
   <section class="doc" id="ordem">
     <header>
       <h2>Ordem de serviço</h2>
-      <p class="prose">O que será entregue, em que ordem e por quanto.</p>
+      <p class="prose">Estimativa inicial para as funcionalidades descritas neste documento.</p>
     </header>
     <div class="panel">
-      <div class="os-head">
-        <span>OS <b>2026-001</b></span>
-        <span>Cliente <span class="fill">nome do cliente</span></span>
-        <span>Início previsto <span class="fill">data</span></span>
+      <div class="os-top">
+        <div><div class="lbl">Valor estimado do desenvolvimento</div><div class="big">R$ 5.000</div></div>
+        <div class="code">Aplicativo · Painel · API</div>
       </div>
       <div class="table-scroll">
-        <table class="data">
-          <thead><tr><th class="step-n">Etapa</th><th>Entrega</th><th class="r">Prazo</th><th class="r">Valor</th></tr></thead>
+        <table class="data t-mid">
+          <thead><tr><th>Entrega</th><th>O que inclui</th></tr></thead>
           <tbody>
-            <tr><td class="step-n">1</td><th>Descoberta e design<small>Fluxos do cliente e do prestador, protótipo navegável (o que está ao lado) e identidade visual.</small></th><td class="r"><span class="fill">sem.</span></td><td class="r"><span class="fill">R$</span></td></tr>
-            <tr><td class="step-n">2</td><th>App do cliente<small>Cadastro, busca por categoria e distância, perfil do profissional, pedido de orçamento, pagamento e avaliação.</small></th><td class="r"><span class="fill">sem.</span></td><td class="r"><span class="fill">R$</span></td></tr>
-            <tr><td class="step-n">3</td><th>App do prestador<small>Cadastro com documentos, agenda, resposta a pedidos, histórico de ganhos.</small></th><td class="r"><span class="fill">sem.</span></td><td class="r"><span class="fill">R$</span></td></tr>
-            <tr><td class="step-n">4</td><th>Pagamentos e split<small>Integração com o Asaas: Pix, cartão, subconta do prestador, divisão da comissão e notas fiscais.</small></th><td class="r"><span class="fill">sem.</span></td><td class="r"><span class="fill">R$</span></td></tr>
-            <tr><td class="step-n">5</td><th>Painel da plataforma<small>Aprovação de prestadores, pedidos, suporte e relatórios.</small></th><td class="r"><span class="fill">sem.</span></td><td class="r"><span class="fill">R$</span></td></tr>
-            <tr><td class="step-n">6</td><th>Publicação nas lojas<small>Contas de desenvolvedor, revisão da Apple e do Google, ajustes pedidos pelas lojas.</small></th><td class="r"><span class="fill">sem.</span></td><td class="r"><span class="fill">R$</span></td></tr>
+            <tr><th>Aplicativo mobile</th><td class="muted"><b class="lead">Lado contratante:</b> busca de profissionais por categoria e localização, perfis, avaliações, serviços e preços, solicitação de orçamento, agendamento e acompanhamento do serviço.<br><b class="lead">Lado prestador:</b> perfil profissional, cadastro de serviços (preço fixo, por hora ou sob orçamento), requisitos e adicionais, agenda, áreas de atendimento, taxas de deslocamento e gestão de solicitações.</td></tr>
+            <tr><th>Painel administrativo</th><td class="muted">Gestão da plataforma: usuários, prestadores, serviços e solicitações.</td></tr>
+            <tr><th>API backend</th><td class="muted">NestJS, base dos dois aplicativos e do painel.</td></tr>
+            <tr><th>Imagens</th><td class="muted">Armazenamento no Cloudflare R2.</td></tr>
           </tbody>
-          <tfoot><tr><td></td><th>Total</th><td class="r"><span class="fill">sem.</span></td><td class="r"><span class="fill">R$</span></td></tr></tfoot>
         </table>
       </div>
     </div>
     <div class="prose">
-      <p><strong>Forma de pagamento:</strong> <span class="fill">a definir</span>. <strong>Não inclui:</strong> custos de terceiros listados na próxima seção, que são pagos direto pelo cliente.</p>
+      <p>O valor cobre a mão de obra de desenvolvimento. Os custos para manter o aplicativo no ar estão na próxima seção e não fazem parte desta estimativa.</p>
+    </div>
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+      <span>Pagamentos, repasse ao prestador, devolução de valores, cadastro de prestadores, mapa e nota fiscal dependem das respostas em <a href="#perguntas">Perguntas e pontos em aberto</a>. <b>Se alguma resposta ampliar o escopo, o valor é reavaliado antes de seguir.</b></span>
     </div>
   </section>
 
@@ -404,60 +430,91 @@
   <section class="doc" id="custos">
     <header>
       <h2>Custos para manter o app</h2>
-      <p class="prose">Só o que se paga a terceiros por mês, sem mão de obra. A hospedagem cresce com o uso, por isso os valores mudam conforme o volume de vendas.</p>
+      <p class="prose">Sem mão de obra. O custo fixo fica entre ≈ R$ 205 e ≈ R$ 1.070 por mês conforme o volume, e as tarifas de pagamento variam por transação. Valores em dólar usam R$ 5,50 por US$ 1.</p>
     </header>
     <div class="panel table-scroll">
-      <table class="data" id="costs-table">
-        <thead><tr><th>Item</th><th class="r" data-tier="0"></th><th class="r" data-tier="1"></th><th class="r" data-tier="2"></th><th class="r" data-tier="3"></th></tr></thead>
+      <table class="data" id="fixed-table" style="min-width:560px">
+        <thead><tr><th>Custo fixo por mês</th><th class="r" data-tier="0"></th><th class="r" data-tier="1"></th><th class="r" data-tier="2"></th><th class="r" data-tier="3"></th></tr></thead>
         <tbody>
-          <tr><th>Domínios .com.br e .com<small>Registro anual dividido por 12.</small></th><td class="r">R$ 9</td><td class="r">R$ 9</td><td class="r">R$ 9</td><td class="r">R$ 9</td></tr>
-          <tr><th>Apple Developer<small>US$ 99 por ano, dividido por 12.</small></th><td class="r">R$ 45</td><td class="r">R$ 45</td><td class="r">R$ 45</td><td class="r">R$ 45</td></tr>
-          <tr><th>Hospedagem da API e banco de dados</th><td class="r">R$ 150</td><td class="r">R$ 250</td><td class="r">R$ 600</td><td class="r">R$ 1.000</td></tr>
-          <tr><th>Cloudflare R2<small>Fotos dos pedidos e documentos. Até 10 GB não paga.</small></th><td class="r">R$ 0</td><td class="r">R$ 1</td><td class="r">R$ 5</td><td class="r">R$ 15</td></tr>
+          <tr><th>Domínios .com.br e .com</th><td class="r">R$ 9</td><td class="r">R$ 9</td><td class="r">R$ 9</td><td class="r">R$ 9</td></tr>
+          <tr><th>Apple Developer</th><td class="r">R$ 45</td><td class="r">R$ 45</td><td class="r">R$ 45</td><td class="r">R$ 45</td></tr>
+          <tr><th>Hospedagem da API e banco<small>Estimativa nossa</small></th><td class="r">R$ 150</td><td class="r">R$ 250</td><td class="r">R$ 600</td><td class="r">R$ 1.000</td></tr>
+          <tr><th>Cloudflare R2</th><td class="r">R$ 0</td><td class="r">R$ 1</td><td class="r">R$ 5</td><td class="r">R$ 15</td></tr>
         </tbody>
-        <tfoot><tr><th>Total por mês</th><td class="r">R$ 204</td><td class="r">R$ 305</td><td class="r">R$ 659</td><td class="r">R$ 1.069</td></tr></tfoot>
+        <tfoot><tr><th>Total</th><td class="r">≈ R$ 205</td><td class="r">≈ R$ 305</td><td class="r">≈ R$ 660</td><td class="r">≈ R$ 1.070</td></tr></tfoot>
       </table>
     </div>
-    <div class="prose">
-      <p>Fora da conta mensal: a conta do <strong>Google Play</strong> custa US$ 25 uma única vez. O <strong>Asaas</strong> não cobra mensalidade, só uma tarifa por pagamento recebido, e essa tarifa já entra na simulação.</p>
-    </div>
+    <details class="panel sens">
+      <summary>Ver todos os itens, com valores e frequência</summary>
+      <div class="table-scroll">
+        <table class="data t-wide">
+          <thead><tr><th>Item</th><th>Valor</th><th>Frequência</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><th>Domínio .com.br</th><td class="num">R$ 40</td><td><span class="freq">por ano</span></td><td class="muted">Registro.br; registradoras podem cobrar diferente</td></tr>
+            <tr><th>Domínio .com</th><td class="num">≈ US$ 10–12 (≈ R$ 55–65)</td><td><span class="freq">por ano</span></td><td class="muted">Cloudflare Registrar cobra o preço do registro, sem margem</td></tr>
+            <tr><th>Cloudflare R2 (imagens)</th><td>Grátis até 10 GB; depois US$ 0,015 por GB</td><td><span class="freq">por mês</span></td><td class="muted">Saída de dados gratuita. 50 GB ≈ R$ 3,30; 100 GB ≈ R$ 7,40</td></tr>
+            <tr><th>Apple Developer</th><td class="num">US$ 99 (≈ R$ 545)</td><td><span class="freq">por ano</span></td><td class="muted">Necessário para publicar no iOS</td></tr>
+            <tr><th>Google Play</th><td class="num">US$ 25 (≈ R$ 140)</td><td><span class="freq">uma vez</span></td><td class="muted">Conta pessoal nova exige teste fechado com 12 testadores por 14 dias</td></tr>
+            <tr><th>Asaas: conta</th><td>Sem mensalidade nem adesão</td><td></td><td class="muted">Paga-se por cobrança recebida</td></tr>
+            <tr><th>Asaas: Pix e boleto</th><td class="num">R$ 1,99 por cobrança recebida</td><td><span class="freq">por transação</span></td><td class="muted">R$ 0,99 nos 3 primeiros meses</td></tr>
+            <tr><th>Asaas: cartão à vista</th><td class="num">R$ 0,49 + 2,99%</td><td><span class="freq">por transação</span></td><td class="muted">Parcelado: 3,49% (2 a 6x) e 3,99% (7 a 12x)</td></tr>
+            <tr><th>Asaas: antecipação do cartão</th><td class="num">1,25% ao mês (à vista)</td><td><span class="freq">quando usada</span></td><td class="muted">Sujeita a análise de crédito</td></tr>
+            <tr><th>Asaas: nota fiscal de serviço</th><td class="num">R$ 0,49 por nota</td><td><span class="freq">por nota</span></td><td class="muted">Exige inscrição municipal e homologação na prefeitura (exceto MEI)</td></tr>
+            <tr><th>Asaas: subcontas e escrow</th><td>A confirmar</td><td></td><td class="muted">Subcontas podem ter taxa cobrada por dia aberta; o escrow tem taxa fixa mensal. Valores não publicados</td></tr>
+            <tr><th>Hospedagem da API e banco</th><td>Estimativa: R$ 150 a R$ 600 por mês</td><td><span class="freq">por mês</span></td><td class="muted">Estimativa nossa, depende do volume e do provedor</td></tr>
+            <tr><th>Mapas (se houver)</th><td>Cota gratuita de 10 mil carregamentos por mês</td><td><span class="freq">por mês</span></td><td class="muted">Geocoding: 10 mil gratuitos, depois US$ 5 por 1.000</td></tr>
+            <tr><th>SMS ou WhatsApp de verificação, e-mail, monitoramento</th><td>A orçar</td><td></td><td class="muted">Dependem do uso</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
   </section>
 
   <!-- PRECIFICAÇÃO -->
   <section class="doc" id="precificacao">
     <header>
       <h2>Modelos de precificação</h2>
-      <p class="prose">Três formas de a plataforma ganhar dinheiro. A simulação logo abaixo compara as duas primeiras com números.</p>
+      <p class="prose">A plataforma pode ganhar com uma mensalidade fixa do prestador (R$ 49 por mês, valor ilustrativo) ou com uma comissão de 10% sobre cada serviço, separada automaticamente por split no Asaas. Nos dois casos, as tarifas do Asaas ficam com o prestador.</p>
     </header>
     <div class="panel table-scroll">
-      <table class="data compare">
-        <thead><tr><th scope="col"></th><th scope="col">Comissão por serviço</th><th scope="col">Mensalidade do prestador</th><th scope="col">Híbrido</th></tr></thead>
+      <table class="data compare t-wide">
+        <thead><tr><th>Critério</th><th>A) Mensalidade fixa</th><th>B) Comissão de 10% via split</th></tr></thead>
         <tbody>
-          <tr><th>Como funciona</th><td>A plataforma fica com 10% de cada serviço pago pelo app.</td><td>Cada prestador paga R$ 49 por mês para aparecer no app.</td><td>Mensalidade menor e comissão menor, por exemplo R$ 19 e 5%.</td></tr>
-          <tr><th>Para o prestador entrar</th><td>Fácil. Só paga quando ganha.</td><td>Mais difícil. Paga antes de ter o primeiro cliente.</td><td>Intermediário.</td></tr>
-          <tr><th>Receita da plataforma</th><td>Cresce junto com as vendas.</td><td>Previsível, mas não cresce com as vendas.</td><td>Uma base fixa mais uma parte variável.</td></tr>
-          <tr><th>Risco</th><td>Cliente e prestador combinarem por fora do app.</td><td>Prestador cancelar se não tiver pedidos.</td><td>Os dois, em menor grau.</td></tr>
-          <tr><th>Regras das lojas</th><td>Serviço presencial pode ser cobrado fora do sistema de compras da Apple e do Google.</td><td>Precisa validar. Assinatura cobrada dentro do app pode exigir a compra pela loja.</td><td>Mesma validação da mensalidade.</td></tr>
+          <tr><th>Como funciona</th><td>Prestador paga um valor fixo por mês para anunciar</td><td>10% do valor líquido de cada serviço pago pelo app vai para a plataforma no momento do pagamento</td></tr>
+          <tr><th>A receita depende do volume de serviços?</th><td>Não</td><td>Sim, sobe e cai com o uso</td></tr>
+          <tr><th>Barreira de entrada do prestador</th><td>Alta: paga antes de vender</td><td>Baixa: só paga quando vende</td></tr>
+          <tr><th>Risco de o serviço ser combinado por fora</th><td>Menor, pois a receita não depende do pagamento no app</td><td>Maior: se o pagamento não passar pelo app, não há comissão</td></tr>
+          <tr><th>Apple e Google</th><td>A mensalidade de acesso pode ser tratada como serviço digital e exigir o billing das lojas (15% a 30%) se cobrada dentro do app</td><td>Sem comissão das lojas: o serviço é consumido fora do app</td></tr>
+          <tr><th>Tecnologia</th><td>Cobrança recorrente simples</td><td>API de split, subcontas para cada prestador e cadastro (KYC) no Asaas</td></tr>
+          <tr><th>Tarifas do Asaas</th><td>Uma cobrança por mensalidade (ex.: Pix R$ 1,99)</td><td>Descontadas antes da divisão; o percentual incide sobre o valor líquido</td></tr>
+          <tr><th>Ponto de equilíbrio</th><td>R$ 49 equivale a 10% de R$ 490 por mês em serviços</td><td>Cerca de 3 serviços de R$ 180 por prestador por mês</td></tr>
         </tbody>
       </table>
     </div>
+    <div class="prose"><p><b>Como funciona o split do Asaas:</b></p></div>
+    <ul class="bullets">
+      <li>Só está disponível pela API e divide o valor entre contas Asaas; cada prestador precisa de uma subconta.</li>
+      <li>O percentual é calculado sobre o valor líquido, depois das tarifas, então plataforma e prestador dividem a tarifa na proporção do split.</li>
+      <li>Não há split abaixo de R$ 1, e o split não é indicado quando o repasse precisa ocorrer numa data futura ou depender de aprovação posterior (veja a <a href="#perguntas">pergunta sobre retenção</a>).</li>
+    </ul>
+    <p class="prose">Também é possível combinar os dois modelos: mensalidade menor mais comissão menor.</p>
   </section>
 
   <!-- SIMULAÇÃO -->
   <section class="doc" id="simulacao">
     <header>
-      <h2>Quanto a plataforma pode ganhar por mês</h2>
-      <p class="prose">Mexa nos controles para ver a sobra depois das tarifas e dos custos fixos. Os números partem de um exemplo de bairro com 22 prestadores.</p>
+      <h2>Simulação mensal</h2>
+      <p class="prose">Mexa nos controles para ver quanto sobra para a plataforma depois das tarifas, das notas fiscais e dos custos fixos. Os valores iniciais são os do cenário de R$ 20 mil em vendas por mês.</p>
     </header>
 
     <div class="panel sim">
       <div class="sim-controls">
-        <div class="presets" role="group" aria-label="Cenários prontos">
-          <span>Cenários</span>
-          <button type="button" class="chip" data-preset="inicio">Lançamento</button>
-          <button type="button" class="chip" data-preset="bairro">Bairro</button>
-          <button type="button" class="chip" data-preset="cidade">Cidade</button>
-          <button type="button" class="chip" data-preset="escala">Escala</button>
+        <div class="presets" role="group" aria-label="Cenários da proposta">
+          <span>Vendas por mês</span>
+          <button type="button" class="chip" data-preset="5000">R$ 5 mil</button>
+          <button type="button" class="chip" data-preset="20000">R$ 20 mil</button>
+          <button type="button" class="chip" data-preset="100000">R$ 100 mil</button>
+          <button type="button" class="chip" data-preset="200000">R$ 200 mil</button>
         </div>
         <div class="sliders">
           <div class="slider">
@@ -467,13 +524,13 @@
           </div>
           <div class="slider">
             <div class="slider-top"><label for="in-s">Serviços por prestador no mês</label><output for="in-s" id="out-s"></output></div>
-            <input type="range" id="in-s" min="1" max="20" step="1" value="5">
-            <div class="range-ends"><span>1</span><span>20</span></div>
+            <input type="range" id="in-s" min="1" max="15" step="1" value="5">
+            <div class="range-ends"><span>1</span><span>15</span></div>
           </div>
           <div class="slider">
             <div class="slider-top"><label for="in-t">Ticket médio</label><output for="in-t" id="out-t"></output></div>
-            <input type="range" id="in-t" min="50" max="600" step="10" value="180">
-            <div class="range-ends"><span>R$ 50</span><span>R$ 600</span></div>
+            <input type="range" id="in-t" min="80" max="400" step="10" value="180">
+            <div class="range-ends"><span>R$ 80</span><span>R$ 400</span></div>
           </div>
         </div>
         <details class="tune" id="tune">
@@ -495,7 +552,7 @@
               <div class="range-ends"><span>R$ 19</span><span>R$ 149</span></div>
             </div>
           </div>
-          <p class="hint" style="margin-top:12px">Tarifas usadas: Pix R$ 1,99 por pagamento, cartão à vista 2,99% + R$ 0,49, nota fiscal R$ 0,10. A tarifa sai do valor do serviço antes da divisão, então a plataforma arca com a parte dela.</p>
+          <p class="hint" style="margin-top:12px">Tarifas da tabela padrão do Asaas: Pix R$ 1,99, cartão à vista 2,99% + R$ 0,49, nota fiscal R$ 0,49. A promoção dos 3 primeiros meses não entra na conta.</p>
         </details>
       </div>
 
@@ -503,11 +560,11 @@
         <div class="ledger" aria-live="polite">
           <h3>Extrato do mês com comissão</h3>
           <div class="lrow"><span class="op"></span><span class="what">Vendas na plataforma<small id="l-gmv-d"></small></span><span class="val" id="l-gmv"></span></div>
-          <div class="lrow"><span class="op">×</span><span class="what" id="l-cb-label">Comissão de 10%</span><span class="val" id="l-cb"></span></div>
-          <div class="lrow minus"><span class="op">−</span><span class="what">Parte da plataforma nas tarifas do Asaas<small id="l-fee-d"></small></span><span class="val" id="l-fee"></span></div>
-          <div class="lrow sub"><span class="op">=</span><span class="what">Comissão líquida</span><span class="val" id="l-cl"></span></div>
-          <div class="lrow minus"><span class="op">−</span><span class="what">Notas fiscais da comissão<small id="l-nf-d"></small></span><span class="val" id="l-nf"></span></div>
-          <div class="lrow minus"><span class="op">−</span><span class="what">Custos fixos<small id="l-fx-d"></small></span><span class="val" id="l-fx"></span></div>
+          <div class="lrow minus"><span class="op">−</span><span class="what">Tarifas do Asaas<small id="l-fee-d"></small></span><span class="val" id="l-fee"></span></div>
+          <div class="lrow sub"><span class="op">=</span><span class="what">Valor líquido</span><span class="val" id="l-net"></span></div>
+          <div class="lrow"><span class="op">×</span><span class="what" id="l-c-label">Comissão de 10%</span><span class="val" id="l-cl"></span></div>
+          <div class="lrow minus"><span class="op">−</span><span class="what">Nota fiscal da comissão<small id="l-nf-d"></small></span><span class="val" id="l-nf"></span></div>
+          <div class="lrow minus"><span class="op">−</span><span class="what">Custos fixos estimados<small id="l-fx-d"></small></span><span class="val" id="l-fx"></span></div>
           <div class="lrow total"><span class="op">=</span><span class="what">Sobra mensal</span><span class="val" id="l-total"></span></div>
           <p class="hint" id="l-year" style="margin-top:8px"></p>
         </div>
@@ -523,12 +580,13 @@
             <div class="where-legend" id="where-legend"></div>
           </div>
           <div class="kpi">
-            <span id="k-m-label">Se fosse mensalidade de R$ 49</span>
+            <span id="k-m-label">Com mensalidade de R$ 49</span>
             <b id="k-m"></b>
             <small id="k-m-d"></small>
           </div>
           <div class="verdict" id="verdict"></div>
           <div class="verdict" id="breakeven"></div>
+          <div class="verdict" id="payback"></div>
         </div>
       </div>
 
@@ -540,18 +598,16 @@
             <span><i style="background:var(--series-b)"></i>Mensalidade</span>
           </div>
         </div>
-        <div class="chart" id="chart" role="img" aria-label="Gráfico da sobra mensal nos dois modelos"></div>
-        <p class="hint">Com os serviços por prestador e o ticket médio escolhidos acima. Os degraus são as mudanças de faixa da hospedagem.</p>
+        <div class="chart" id="chart" role="img" aria-label="Gráfico da sobra mensal nos modelos de comissão e de mensalidade"></div>
+        <p class="hint">Usa os serviços por prestador e o ticket médio escolhidos acima. Os degraus são as mudanças de faixa da hospedagem.</p>
       </div>
 
-      <details class="sens">
-        <summary>Tabela: sobra com 3 a 8 serviços por prestador</summary>
-        <div class="table-scroll">
-          <table class="data" id="sens-table"></table>
-        </div>
+      <details class="sens" open>
+        <summary>Tabela por cenário de vendas</summary>
+        <div class="table-scroll"><table class="data" id="scen-table"></table></div>
       </details>
 
-      <p class="disclaimer">Estimativa inicial, feita com as tarifas públicas encontradas na internet em outubro de 2026. Não inclui impostos sobre a receita da plataforma, que dependem do regime tributário.</p>
+      <p class="disclaimer">Antes de impostos, marketing e suporte. Ficam fora SMS ou WhatsApp, e-mail, monitoramento e a taxa de subcontas e escrow do Asaas. O Google Play é uma taxa única de ≈ R$ 140.</p>
     </div>
   </section>
 
@@ -559,33 +615,83 @@
   <section class="doc" id="lojas">
     <header>
       <h2>Apple e Google</h2>
-      <p class="prose">O que as lojas pedem para publicar e o que muda no modelo de cobrança.</p>
+      <p class="prose">Apple e Google não cobram comissão sobre o serviço contratado pelo app. O ponto de atenção é a mensalidade do prestador, se for cobrada dentro do app.</p>
     </header>
-    <div class="panel feature-list">
-      <div><b>Conta na App Store</b><p>Apple Developer Program, US$ 99 por ano. Para publicar no nome da empresa é preciso CNPJ e número D-U-N-S, que é gratuito e leva alguns dias.</p></div>
-      <div><b>Conta no Google Play</b><p>Taxa única de US$ 25. Contas pessoais novas precisam de um teste fechado com 12 pessoas por 14 dias antes de publicar. Conta de empresa não tem essa exigência.</p></div>
-      <div><b>Cobrança dos serviços</b><p>Serviço feito presencialmente pode ser cobrado pelo Asaas, fora do sistema de compras das lojas, sem a taxa de 15% a 30%.</p></div>
-      <div><b>Mensalidade dentro do app</b><p>Se o prestador assinar um plano pelo app, a Apple e o Google podem exigir a compra pela loja, com taxa. Cobrar a mensalidade por um site evita isso, mas precisa ser validado.</p></div>
-      <div><b>Exclusão de conta</b><p>A Apple exige que a pessoa consiga apagar a própria conta de dentro do app.</p></div>
-      <div><b>Revisão</b><p>Cada versão passa por revisão. Costuma levar de 1 a 3 dias, e a primeira publicação pode pedir ajustes.</p></div>
+    <div class="panel stores">
+      <div>
+        <b>Apple</b>
+        <span class="cost">US$ 99 por ano</span>
+        <p>A regra 3.1.3(e) das diretrizes manda usar meio de pagamento que não seja a compra no app (cartão, Pix, Apple Pay) para serviços físicos consumidos fora do app. Sem compra no app, não há comissão.</p>
+      </div>
+      <div>
+        <b>Google Play</b>
+        <span class="cost">US$ 25 uma única vez</span>
+        <p>A política de pagamentos lista serviços físicos, como limpeza e transporte, entre os casos em que o billing do Google Play não é exigido.</p>
+      </div>
+      <div>
+        <b>Mensalidade do prestador</b>
+        <span class="flag">Validar antes de escolher</span>
+        <p>O Google exige o billing próprio para assinaturas e "service upgrades", e há caso público de app para freelancers rejeitado pela Apple por oferecer serviço digital pago sem compra no app. Cobrar a mensalidade fora do app, num painel web, é a saída comum, mas as regras de direcionamento da Apple devem ser validadas antes de fechar esse modelo.</p>
+      </div>
     </div>
+    <p class="hint" style="font-size:.88rem">A revisão da Apple tem componente subjetivo, então isto é uma leitura das regras publicadas, não uma garantia de aprovação.</p>
   </section>
 
   <!-- PERGUNTAS -->
   <section class="doc" id="perguntas">
     <header>
       <h2>Perguntas e pontos em aberto</h2>
-      <p class="prose">Decisões que mudam escopo, prazo ou custo. Quanto antes forem respondidas, mais preciso fica o orçamento.</p>
+      <p class="prose">As respostas podem mudar o escopo e o valor da ordem de serviço.</p>
+      <div class="qcount"><span class="status open">8 em aberto</span><span class="status done">1 decidido</span></div>
     </header>
     <ol class="panel qlist">
-      <li><span class="qn">01</span><div><b>Quem paga a tarifa do pagamento? <span class="tag">afeta a simulação</span></b><p>Hoje a tarifa sai do valor total e é dividida proporcionalmente. Ela também pode ser cobrada só do prestador ou somada ao preço do cliente.</p></div></li>
-      <li><span class="qn">02</span><div><b>O valor fica retido até o serviço terminar?</b><p>Dá mais segurança ao cliente, mas exige regras de liberação, cancelamento e reembolso.</p></div></li>
-      <li><span class="qn">03</span><div><b>Como os prestadores são aprovados?</b><p>Só documento com foto, ou também comprovante de endereço e antecedentes.</p></div></li>
-      <li><span class="qn">04</span><div><b>Quais cidades e bairros no lançamento?</b><p>Define o tamanho da base inicial e a meta de prestadores.</p></div></li>
-      <li><span class="qn">05</span><div><b>Comissão, mensalidade ou híbrido? <span class="tag">afeta a simulação</span></b><p>A mensalidade depende da validação das regras das lojas.</p></div></li>
-      <li><span class="qn">06</span><div><b>Em nome de quem ficam as contas?</b><p>Apple, Google, Asaas, domínio e hospedagem. O ideal é tudo no CNPJ do cliente.</p></div></li>
-      <li><span class="qn">07</span><div><b>Mapa e distância</b><p>O Google Maps tem uma franquia gratuita. Acima dela passa a cobrar por uso, o que entraria nos custos fixos.</p></div></li>
-      <li><span class="qn">08</span><div><b>Nome e marca do app</b><p>Necessários para registrar domínio e criar as páginas nas lojas.</p></div></li>
+      <li><span class="qn">01</span><div>
+        <div class="qhead"><b>O dinheiro será repassado ao prestador logo após o pagamento ou aguardamos o cliente dar o ok para liberar?</b><span class="status open">Em aberto</span></div>
+        <div class="qbody">
+          <p><b>Repasse imediato:</b> split automático no pagamento, mais simples, mas sem o valor retido em caso de disputa.</p>
+          <p><b>Aguardar o ok:</b> protege o cliente; exige conta escrow (taxa fixa mensal no Asaas) ou transferência posterior, pois o split não é indicado para repasse futuro, e convém definir um prazo para liberação automática.</p>
+        </div></div></li>
+      <li><span class="qn">02</span><div>
+        <div class="qhead"><b>Como funciona a devolução do valor ao cliente: a plataforma faz o estorno por conta própria e assume essa burocracia?</b><span class="status open">Em aberto</span></div>
+        <div class="qbody">
+          <p><b>Plataforma assume:</b> mais confiança do cliente; exige tela de disputas no painel admin e alguém para analisar cada pedido.</p>
+          <p><b>Cliente e prestador resolvem entre si:</b> menos trabalho, mais risco de reclamação contra a plataforma.</p>
+          <p>Com repasse imediato, o estorno depende de o prestador ter saldo na subconta (a confirmar com o Asaas).</p>
+        </div></div></li>
+      <li><span class="qn">03</span><div>
+        <div class="qhead"><b>Qualquer pessoa pode se cadastrar como prestador ou ele solicita permissão e passa por revisão manual da equipe?</b><span class="status open">Em aberto</span></div>
+        <div class="qbody">
+          <p><b>Cadastro livre:</b> entrada rápida, mais risco de perfis falsos ou de baixa qualidade.</p>
+          <p><b>Revisão manual:</b> mais qualidade e segurança; exige tela de aprovação no painel admin e alguém para revisar, além do cadastro de cada prestador no Asaas (subconta).</p>
+        </div></div></li>
+      <li><span class="qn">04</span><div>
+        <div class="qhead"><b>O pagamento é sempre feito pelo app ou o cliente pode pagar direto ao prestador?</b><span class="status open">Em aberto</span></div>
+        <div class="qbody">
+          <p><b>Obrigatório no app:</b> garante a comissão e o fluxo de avaliação depois do serviço.</p>
+          <p><b>Opcional:</b> sem comissão garantida, pois o serviço pode ser combinado por fora.</p>
+        </div></div></li>
+      <li><span class="qn">05</span><div>
+        <div class="qhead"><b>Vocês querem que o sistema controle a nota fiscal de alguma forma?</b><span class="status open">Em aberto</span></div>
+        <div class="qbody">
+          <p><b>Nível 0:</b> só a nota da comissão da plataforma.</p>
+          <p><b>Nível 1:</b> o prestador emite por conta própria e anexa a nota ao pedido.</p>
+          <p><b>Nível 2:</b> emissão automática pelo Asaas, que exige as credenciais do prestador na prefeitura (token, login ou certificado digital), com responsabilidade da plataforma sobre esses dados e mais burocracia no cadastro. MEI emite pelo Portal Nacional.</p>
+        </div></div></li>
+      <li><span class="qn">06</span><div>
+        <div class="qhead"><b>Mostrar um mapa ou apenas sugerir os profissionais mais próximos, sem visualizar?</b><span class="status open">Em aberto</span></div>
+        <div class="qbody">
+          <p><b>Sem mapa:</b> distância calculada no backend, custo de API próximo de zero.</p>
+          <p><b>Com mapa:</b> cota gratuita de 10 mil carregamentos por mês, mais horas de desenvolvimento.</p>
+        </div></div></li>
+      <li><span class="qn">07</span><div>
+        <div class="qhead"><b>Qual modelo de cobrança: mensalidade fixa, comissão de 10% ou combinação dos dois?</b><span class="status open">Em aberto</span></div>
+        <div class="qbody"><p>Comparativo em <a href="#precificacao">Modelos de precificação</a> e números na <a href="#simulacao">Simulação mensal</a>.</p></div></div></li>
+      <li><span class="qn">08</span><div>
+        <div class="qhead"><b>Como verificar o telefone dos usuários: SMS, WhatsApp ou só e-mail?</b><span class="status open">Em aberto</span></div>
+        <div class="qbody"><p>Custo variável por usuário, a orçar.</p></div></div></li>
+      <li><span class="qn">09</span><div>
+        <div class="qhead"><b>Quem paga a tarifa do Asaas?</b><span class="status done">Decidido</span></div>
+        <div class="qbody"><p>O prestador, via split sobre o valor líquido.</p></div></div></li>
     </ol>
   </section>
 
@@ -593,27 +699,43 @@
   <section class="doc" id="premissas">
     <header>
       <h2>Premissas e referências</h2>
+      <p class="prose">Os valores deste documento são estimativas de 22/10/2026 e devem ser reconfirmados nas páginas oficiais antes do fechamento.</p>
     </header>
-    <div class="panel table-scroll">
-      <table class="data">
-        <thead><tr><th>Premissa</th><th class="r">Valor usado</th></tr></thead>
-        <tbody>
-          <tr><th>Dólar para converter Apple e Google</th><td class="r">≈ R$ 5,50</td></tr>
-          <tr><th>Tarifa Asaas por Pix recebido</th><td class="r">R$ 1,99</td></tr>
-          <tr><th>Tarifa Asaas por cartão de crédito à vista</th><td class="r">2,99% + R$ 0,49</td></tr>
-          <tr><th>Nota fiscal de serviço emitida pelo Asaas</th><td class="r">R$ 0,10</td></tr>
-          <tr><th>Divisão das tarifas entre plataforma e prestador<small>Proporcional à comissão, como no split percentual do Asaas.</small></th><td class="r">proporcional</td></tr>
-          <tr><th>Cobrança da mensalidade<small>Uma cobrança por Pix por prestador no mês.</small></th><td class="r">R$ 1,99 + NF</td></tr>
-          <tr><th>Faixas de hospedagem por volume de vendas</th><td class="r" id="tiers-desc"></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <ul class="bullets">
+      <li>Dólar a R$ 5,50; a variação altera domínio .com, Apple, Google Play e Cloudflare R2.</li>
+      <li>Tarifas do Asaas na tabela padrão; a promoção dos 3 primeiros meses não entra nas projeções.</li>
+      <li>"Vendas na plataforma" é o valor total dos serviços pagos pelo app por mês.</li>
+      <li>Ticket médio de R$ 180, estimado a partir de serviços pequenos (R$ 120 a R$ 250) puxados para cima por instalações de ar-condicionado.</li>
+      <li>Cada prestador faz 5 serviços por mês pela plataforma; a tabela da simulação mostra a faixa de 3 a 8.</li>
+      <li>Mix de pagamento: 60% Pix e 40% cartão à vista, o que dá tarifa média de ≈ R$ 3,54 por serviço no Asaas.</li>
+      <li>Comissão de 10% sobre o valor líquido, com a tarifa do Asaas paga pelo prestador na proporção do split.</li>
+      <li>Uma nota fiscal por mês por prestador, referente à comissão da plataforma.</li>
+      <li>Hospedagem da API e banco, e o ticket médio de diarista (R$ 120 a R$ 200), são estimativas nossas, sem fonte.</li>
+      <li>Impostos sobre a receita, marketing, suporte e a taxa de subcontas e escrow do Asaas não estão incluídos.</li>
+      <li>Nota fiscal e enquadramento tributário da comissão devem ser confirmados com um contador. Este documento não é consultoria jurídica, contábil ou financeira.</li>
+    </ul>
+    <div class="prose"><p><b>Referências</b> (resultados de busca consultados em 22/10/2026):</p></div>
     <ul class="refs">
-      <li><a href="https://www.asaas.com/precos-e-taxas" target="_blank" rel="noopener">Asaas, preços e taxas</a></li>
-      <li><a href="https://developer.apple.com/programs/" target="_blank" rel="noopener">Apple Developer Program</a> e <a href="https://developer.apple.com/app-store/review/guidelines/" target="_blank" rel="noopener">diretrizes de revisão da App Store</a> (itens 3.1.1 e 3.1.5)</li>
-      <li><a href="https://support.google.com/googleplay/android-developer/answer/9858738" target="_blank" rel="noopener">Google Play, política de pagamentos</a></li>
-      <li><a href="https://developers.cloudflare.com/r2/pricing/" target="_blank" rel="noopener">Cloudflare R2, preços</a></li>
-      <li><a href="https://registro.br/" target="_blank" rel="noopener">Registro.br</a></li>
+      <li><a href="https://www.homehost.com.br/blog/?p=15114" target="_blank" rel="noopener">Registro.br: preço do .com.br</a></li>
+      <li><a href="https://www.cloudflare.com/id-id/products/registrar" target="_blank" rel="noopener">Cloudflare Registrar</a></li>
+      <li><a href="https://filebase.com/blog/cloudflare-r2-pricing-costs-savings-and-alternatives-in-2026/" target="_blank" rel="noopener">Cloudflare R2: preços</a></li>
+      <li><a href="https://www.asaas.com/precos-e-taxas" target="_blank" rel="noopener">Preços e taxas do Asaas</a></li>
+      <li><a href="https://quasa.io/pt/media/asaas-ou-iugu-tarifa-publicada-vence-ate-o-volume-pedir-proposta" target="_blank" rel="noopener">Asaas: tarifas públicas por cobrança</a></li>
+      <li><a href="https://docs.asaas.com/docs/duvidas-frequentes-split" target="_blank" rel="noopener">Asaas: FAQ de split</a></li>
+      <li><a href="https://docs.asaas.com/docs/split-asaas-no-pluga" target="_blank" rel="noopener">Asaas: split e valor líquido</a></li>
+      <li><a href="https://docs.asaas.com/docs/criacao-de-subcontas" target="_blank" rel="noopener">Asaas: criação de subcontas</a></li>
+      <li><a href="https://central.ajuda.asaas.com/hc/pt-br/articles/32096847160859-Termos-e-Condi%C3%A7%C3%B5es-de-Uso" target="_blank" rel="noopener">Asaas: Termos e Condições (escrow e subcontas)</a></li>
+      <li><a href="https://www.asaas.com/nota-fiscal" target="_blank" rel="noopener">Asaas: emissão de nota fiscal</a></li>
+      <li><a href="https://docs.asaas.com/reference/criar-e-atualizar-informacoes-fiscais" target="_blank" rel="noopener">Asaas: informações fiscais (credenciais da prefeitura)</a></li>
+      <li><a href="https://developer.apple.com/forums/thread/723322" target="_blank" rel="noopener">Apple: serviços entre pessoas e comissão (fórum de desenvolvedores)</a></li>
+      <li><a href="https://developer.apple.com/forums/thread/685869" target="_blank" rel="noopener">Apple: app de freelancers rejeitado (fórum de desenvolvedores)</a></li>
+      <li><a href="https://support.google.com/googleplay/android-developer/answer/9858738?hl=en" target="_blank" rel="noopener">Política de pagamentos do Google Play</a></li>
+      <li><a href="https://www.choicely.com/tutorials/how-much-does-it-cost-to-publish-an-app" target="_blank" rel="noopener">Custo de publicar app (Choicely)</a></li>
+      <li><a href="https://developers.google.com/maps/billing-and-pricing/pricing?hl=pt" target="_blank" rel="noopener">Google Maps Platform: preços</a></li>
+      <li><a href="https://larpontual.com.br/portal/quanto-cobra-um-eletricista" target="_blank" rel="noopener">Eletricista: preços 2026</a></li>
+      <li><a href="https://larpontual.com.br/portal/quanto-custa-um-encanador" target="_blank" rel="noopener">Encanador: preços 2026</a></li>
+      <li><a href="https://catracalivre.com.br/noticias/quanto-custa-instalar-um-chuveiro-eletrico-qual-o-preco-de-um-eletricista-para-fazer-o-servico-em-2026/" target="_blank" rel="noopener">Chuveiro elétrico: preços 2026</a></li>
+      <li><a href="https://revistaoeste.com.br/oestegeral/?p=45552" target="_blank" rel="noopener">Ar-condicionado: preços</a></li>
     </ul>
   </section>
 
@@ -624,7 +746,7 @@
     <div class="proto-bar">
       <h2>Teste o protótipo</h2>
       <div class="tools">
-        <button class="btn icon" type="button" id="proto-reload" title="Voltar ao início do protótipo" aria-label="Voltar ao início do protótipo">
+        <button class="btn icon" type="button" id="proto-reload" title="Recomeçar o protótipo do início" aria-label="Recomeçar o protótipo do início">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
         </button>
         <button class="btn icon only-docked" type="button" id="proto-max" title="Ampliar" aria-label="Ampliar protótipo">
@@ -635,11 +757,9 @@
       </div>
     </div>
     <div class="proto-stage" id="proto-stage">
-      <div class="proto-fit" id="proto-fit">
-        <iframe id="proto-frame" src="prototipo.html" title="Protótipo navegável do app"></iframe>
-      </div>
+      <iframe id="proto-frame" src="prototipo.html" title="Protótipo navegável do app"></iframe>
     </div>
-    <p class="proto-caption">Navegue como cliente: toque nos botões e nos profissionais.</p>
+    <p class="proto-caption">Toque para navegar. Dá para entrar como contratante ou como prestador.</p>
   </div>
 </aside>
 </div>
@@ -651,35 +771,30 @@
 </button>
 
 <footer class="foot gutter">
-  <div class="wrap">Proposta comercial · App de serviços para casa · Outubro de 2026</div>
+  <div class="wrap">Proposta comercial · Marketplace de serviços locais · 22 de outubro de 2026</div>
 </footer>
 
 <script>
 (() => {
-  /* Tamanho do protótipo carregado no iframe. Ajuste se o seu HTML tiver outra medida. */
-  const PROTO_W = 390, PROTO_H = 844;
-
-  /* Tarifas e custos usados na simulação */
-  const FEE = { pix: 1.99, cardPct: 0.0299, cardFix: 0.49, nf: 0.10 };
+  /* Tarifas e custos (tabela padrão do Asaas e premissas da proposta) */
+  const FEE = { pix: 1.99, cardPct: 0.0299, cardFix: 0.49, nf: 0.49 };
+  const DEV_COST = 5000;
   const FIXED_BASE = 9 + 45; // domínios + Apple Developer
   const TIERS = [
-    { max: 10000, label: 'até R$ 10 mil', host: 150, r2: 0 },
-    { max: 30000, label: 'R$ 10 a 30 mil', host: 250, r2: 1 },
-    { max: 120000, label: 'R$ 30 a 120 mil', host: 600, r2: 5 },
-    { max: Infinity, label: 'acima de R$ 120 mil', host: 1000, r2: 15 }
+    { max: 10000, label: 'R$ 5 mil', host: 150, r2: 0 },
+    { max: 50000, label: 'R$ 20 mil', host: 250, r2: 1 },
+    { max: 150000, label: 'R$ 100 mil', host: 600, r2: 5 },
+    { max: Infinity, label: 'R$ 200 mil', host: 1000, r2: 15 }
   ];
-  const PRESETS = {
-    inicio: { p: 8, s: 3, t: 150 },
-    bairro: { p: 22, s: 5, t: 180 },
-    cidade: { p: 120, s: 6, t: 180 },
-    escala: { p: 370, s: 7, t: 200 }
-  };
+  const SCENARIOS = [5000, 20000, 100000, 200000];
+  const PROTO_KEY = 'app-marketplace-proto-v2';
 
   const $ = id => document.getElementById(id);
   const intBR = v => Math.round(v).toLocaleString('pt-BR');
   const brl = v => (v < -0.5 ? '−' : '') + 'R$ ' + intBR(Math.abs(v));
   const brl2 = v => 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const approx = v => '≈ ' + brl(v);
+  const pctBR = v => (v * 100).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + '%';
   const compact = v => {
     const a = Math.abs(v), s = v < 0 ? '−' : '';
     if (a >= 1000) return s + 'R$ ' + (a / 1000).toLocaleString('pt-BR', { maximumFractionDigits: a >= 10000 ? 0 : 1 }) + ' mil';
@@ -687,38 +802,37 @@
   };
   const tierFor = gmv => TIERS.find(t => gmv <= t.max);
   const fixedFor = tier => FIXED_BASE + tier.host + tier.r2;
+  const months = v => Math.max(1, Math.round(v));
+  const monthsTxt = v => `≈ ${months(v)} ${months(v) === 1 ? 'mês' : 'meses'}`;
 
-  /* Interface: cabeçalhos das faixas */
-  document.querySelectorAll('#costs-table [data-tier]').forEach(th => { th.textContent = TIERS[+th.dataset.tier].label; });
-  $('tiers-desc').textContent = TIERS.map(t => `${t.label}: R$ ${t.host}`).join(' · ');
+  document.querySelectorAll('#fixed-table [data-tier]').forEach(th => { th.textContent = 'Vendas de ' + TIERS[+th.dataset.tier].label; });
 
+  /* Modelo: p prestadores, s serviços cada, ticket t, comissão c sobre o valor líquido */
   function calc(st, pOverride) {
     const p = pOverride ?? st.p;
     const n = p * st.s;
     const gmv = n * st.t;
     const feePer = st.pix * FEE.pix + (1 - st.pix) * (st.t * FEE.cardPct + FEE.cardFix);
     const fees = n * feePer;
-    const comBruta = st.c * gmv;
-    const comFee = st.c * fees;
-    const comLiq = comBruta - comFee;
-    const nf = n * FEE.nf;
+    const net = gmv - fees;
+    const comLiq = st.c * net;
+    const nf = p * FEE.nf;
     const tier = tierFor(gmv);
     const fixed = fixedFor(tier);
     const sobra = comLiq - nf - fixed;
     const mRec = p * st.m;
     const mCost = p * (FEE.pix + FEE.nf);
     const mSobra = mRec - mCost - fixed;
-    const prest = gmv - fees - comLiq;
-    return { p, n, gmv, feePer, fees, comBruta, comFee, comLiq, nf, tier, fixed, sobra, mRec, mCost, mSobra, prest };
+    const prest = net - comLiq;
+    return { p, n, gmv, feePer, fees, net, comLiq, nf, tier, fixed, sobra, mRec, mCost, mSobra, prest };
   }
 
-  /* Estado */
   const inputs = { p: $('in-p'), s: $('in-s'), t: $('in-t'), c: $('in-c'), pix: $('in-pix'), m: $('in-m') };
-  const read = () => ({
-    p: +inputs.p.value, s: +inputs.s.value, t: +inputs.t.value,
-    c: +inputs.c.value / 100, pix: +inputs.pix.value / 100, m: +inputs.m.value
-  });
-  const paint = el => { const pct = (el.value - el.min) / (el.max - el.min) * 100; el.style.setProperty('--pct', pct + '%'); };
+  const read = () => ({ p: +inputs.p.value, s: +inputs.s.value, t: +inputs.t.value, c: +inputs.c.value / 100, pix: +inputs.pix.value / 100, m: +inputs.m.value });
+  const paint = el => el.style.setProperty('--pct', ((el.value - el.min) / (el.max - el.min) * 100) + '%');
+  const okIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+  const warnIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>';
+  const verdict = (el, good, html) => { el.className = 'verdict ' + (good ? 'good' : 'warn'); el.innerHTML = (good ? okIcon : warnIcon) + '<span>' + html + '</span>'; };
 
   function update() {
     const st = read();
@@ -726,76 +840,81 @@
     $('out-p').textContent = st.p;
     $('out-s').textContent = st.s;
     $('out-t').textContent = 'R$ ' + st.t;
-    $('out-c').textContent = (st.c * 100).toLocaleString('pt-BR') + '%';
+    $('out-c').textContent = pctBR(st.c);
     $('out-pix').textContent = Math.round(st.pix * 100) + '%';
     $('out-m').textContent = 'R$ ' + st.m;
 
     const r = calc(st);
     $('l-gmv').textContent = approx(r.gmv);
     $('l-gmv-d').textContent = `${intBR(r.n)} serviços de R$ ${st.t}`;
-    $('l-cb-label').textContent = `Comissão de ${(st.c * 100).toLocaleString('pt-BR')}%`;
-    $('l-cb').textContent = approx(r.comBruta);
-    $('l-fee').textContent = approx(r.comFee);
-    $('l-fee-d').textContent = `Tarifas somadas ${approx(r.fees)}, média de ${brl2(r.feePer)} por serviço`;
+    $('l-fee').textContent = approx(r.fees);
+    $('l-fee-d').textContent = `Média de ${brl2(r.feePer)} por serviço, com ${Math.round(st.pix * 100)}% via Pix`;
+    $('l-net').textContent = approx(r.net);
+    $('l-c-label').innerHTML = `Comissão de ${pctBR(st.c)}<small>Sobre o valor líquido. O prestador fica com o restante.</small>`;
     $('l-cl').textContent = approx(r.comLiq);
     $('l-nf').textContent = approx(r.nf);
-    $('l-nf-d').textContent = `${intBR(r.n)} notas de ${brl2(FEE.nf)}`;
+    $('l-nf-d').textContent = `${st.p} ${st.p === 1 ? 'nota' : 'notas'} de ${brl2(FEE.nf)}, uma por prestador`;
     $('l-fx').textContent = approx(r.fixed);
-    $('l-fx-d').textContent = `Faixa de vendas ${r.tier.label}`;
+    $('l-fx-d').textContent = `Faixa de volume usada: ${r.tier.label}`;
     const tot = $('l-total');
     tot.textContent = approx(r.sobra);
     tot.classList.toggle('is-neg', r.sobra < 0);
-    $('l-year').textContent = r.sobra > 0 ? `Em 12 meses nesse ritmo: ${approx(r.sobra * 12)}.` : 'Nesse cenário a comissão ainda não cobre os custos fixos.';
+    $('l-year').textContent = r.sobra > 0 ? `Em 12 meses nesse ritmo: ${approx(r.sobra * 12)}, antes de impostos, marketing e suporte.` : 'Nesse cenário a comissão ainda não cobre os custos fixos.';
 
     $('k-n').textContent = intBR(r.n);
     $('k-pp').textContent = approx(r.prest / st.p);
 
-    const parts = [
-      ['Prestadores', r.prest, 'var(--series-a)'],
-      ['Plataforma', r.comLiq, 'var(--accent)'],
-      ['Tarifas do Asaas', r.fees, 'var(--series-b)']
-    ];
+    const parts = [['Prestadores', r.prest, 'var(--series-a)'], ['Plataforma', r.comLiq, 'var(--accent)'], ['Tarifas do Asaas', r.fees, 'var(--series-b)']];
     $('where-bar').innerHTML = parts.map(([, v, c]) => `<i style="width:${(v / r.gmv * 100).toFixed(2)}%;background:${c}"></i>`).join('');
-    $('where-legend').innerHTML = parts.map(([n, v, c]) => `<div><span class="sw" style="background:${c}"></span>${n}<b>${(v / r.gmv * 100).toLocaleString('pt-BR', { maximumFractionDigits: 1 })}% · ${brl(v)}</b></div>`).join('');
+    $('where-legend').innerHTML = parts.map(([n, v, c]) => `<div><span class="sw" style="background:${c}"></span>${n}<b>${pctBR(v / r.gmv)} · ${brl(v)}</b></div>`).join('');
 
-    $('k-m-label').textContent = `Se fosse mensalidade de R$ ${st.m}`;
+    $('k-m-label').textContent = `Com mensalidade de R$ ${st.m} em vez de comissão`;
     $('k-m').textContent = approx(r.mSobra) + ' de sobra';
-    $('k-m-d').textContent = `${st.p} × R$ ${st.m} = ${brl(r.mRec)}, menos cobrança e nota (${brl(r.mCost)}) e custos fixos (${brl(r.fixed)}).`;
+    $('k-m-d').textContent = `${st.p} × R$ ${st.m} = ${brl(r.mRec)}, menos cobrança e nota de cada mensalidade (${brl(r.mCost)}) e custos fixos (${brl(r.fixed)}).`;
 
     const diff = r.sobra - r.mSobra;
-    const perProm = st.c * (st.t - r.feePer) - FEE.nf;
-    const sCross = (st.m - FEE.pix - FEE.nf) / perProm;
-    const crossTxt = perProm > 0
-      ? ` A comissão passa a render mais quando cada prestador vende acima de ≈ ${brl(sCross * st.t)} por mês (${sCross.toLocaleString('pt-BR', { maximumFractionDigits: 1 })} serviços).`
-      : '';
-    const ok = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
-    const warn = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>';
-    const vd = $('verdict');
-    vd.className = 'verdict ' + (diff >= 0 ? 'good' : 'warn');
-    vd.innerHTML = (diff >= 0 ? ok : warn) + `<span>${diff >= 0 ? `A comissão rende <b>${brl(diff)}</b> a mais que a mensalidade.` : `A mensalidade rende <b>${brl(-diff)}</b> a mais que a comissão.`}${crossTxt}</span>`;
+    const perServ = st.c * (st.t - r.feePer);
+    const sCross = (st.m - FEE.pix) / perServ;
+    const crossTxt = perServ > 0 ? ` A comissão passa a render mais quando cada prestador vende acima de ≈ ${brl(sCross * st.t)} por mês (${sCross.toLocaleString('pt-BR', { maximumFractionDigits: 1 })} serviços de R$ ${st.t}).` : '';
+    verdict($('verdict'), diff >= 0, (diff >= 0 ? `A comissão rende <b>${brl(diff)}</b> a mais que a mensalidade.` : `A mensalidade rende <b>${brl(-diff)}</b> a mais que a comissão.`) + crossTxt);
 
     let be = null;
     for (let p = 1; p <= 5000; p++) { if (calc(st, p).sobra >= 0) { be = p; break; } }
-    const bd = $('breakeven');
-    const covered = be !== null && st.p >= be;
-    bd.className = 'verdict ' + (covered ? 'good' : 'warn');
-    bd.innerHTML = (covered ? ok : warn) + `<span>${be === null ? 'Com esse ticket e essa comissão a conta não fecha. Aumente a comissão ou o ticket.' : `Os custos fixos ficam cobertos a partir de <b>${be} prestadores</b> nesse ritmo de vendas.`}</span>`;
+    verdict($('breakeven'), be !== null && st.p >= be, be === null ? 'Com esse ticket e essa comissão a conta não fecha.' : `Os custos fixos ficam cobertos a partir de <b>${be} prestadores</b> nesse ritmo de vendas.`);
+
+    const pb = r.sobra > 0 ? DEV_COST / r.sobra : null;
+    verdict($('payback'), pb !== null && pb <= 12, pb === null ? `Sem sobra, o investimento de ${brl(DEV_COST)} ainda não se paga.` : `O investimento de ${brl(DEV_COST)} se paga em <b>${monthsTxt(pb)}</b>, sem contar marketing.`);
 
     document.querySelectorAll('[data-preset]').forEach(b => {
-      const pr = PRESETS[b.dataset.preset];
-      b.setAttribute('aria-pressed', String(pr.p === st.p && pr.s === st.s && pr.t === st.t));
+      const want = Math.max(1, Math.round(+b.dataset.preset / (st.s * st.t)));
+      b.setAttribute('aria-pressed', String(want === st.p));
     });
 
     drawChart(st);
-    sensTable(st);
+    scenarioTable(st);
   }
 
-  function sensTable(st) {
-    const rows = [3, 4, 5, 6, 7, 8].map(s => {
-      const r = calc({ ...st, s });
-      return `<tr${s === st.s ? ' style="background:var(--accent-soft)"' : ''}><th>${s} serviços</th><td class="r">${brl(r.gmv)}</td><td class="r">${brl(r.sobra)}</td><td class="r">${brl(r.mSobra)}</td></tr>`;
-    }).join('');
-    $('sens-table').innerHTML = `<thead><tr><th>Por prestador no mês</th><th class="r">Vendas</th><th class="r">Sobra com comissão</th><th class="r">Sobra com mensalidade</th></tr></thead><tbody>${rows}</tbody>`;
+  function scenarioTable(st) {
+    const curTier = tierFor(calc(st).gmv);
+    const cols = SCENARIOS.map(g => {
+      const pf = g / (st.s * st.t);
+      return { g, pf, r: calc(st, pf), lo: g / (8 * st.t), hi: g / (3 * st.t), cur: tierFor(g) === curTier };
+    });
+    const cell = (c, v) => `<td class="r${c.cur ? ' cur' : ''}">${v}</td>`;
+    const row = (label, f, strong) => `<tr><th>${label}</th>${cols.map(c => cell(c, strong ? '<b>' + f(c) + '</b>' : f(c))).join('')}</tr>`;
+    $('scen-table').innerHTML =
+      `<thead><tr><th>Vendas por mês</th>${cols.map(c => `<th class="r${c.cur ? ' cur' : ''}">${brl(c.g)}</th>`).join('')}</tr></thead><tbody>` +
+      row(`Serviços por mês (ticket R$ ${st.t})`, c => intBR(c.r.n)) +
+      row(`Prestadores ativos (${st.s} serviços cada)`, c => intBR(c.pf)) +
+      row('Faixa de prestadores (8 a 3 serviços cada)', c => `${intBR(c.lo)} a ${intBR(c.hi)}`) +
+      row('Tarifas do Asaas somadas', c => brl(c.r.fees)) +
+      row(`Comissão líquida da plataforma (${pctBR(st.c)})`, c => brl(c.r.comLiq), true) +
+      row('Nota fiscal da comissão', c => brl(c.r.nf)) +
+      row('Custos fixos estimados', c => approx(c.r.fixed)) +
+      row('Sobra mensal', c => approx(c.r.sobra), true) +
+      row(`Para comparar: mensalidade de R$ ${st.m} por prestador`, c => brl(c.r.mRec)) +
+      row(`Retorno dos ${brl(DEV_COST)}`, c => c.r.sobra > 0 ? monthsTxt(DEV_COST / c.r.sobra) : 'não se paga') +
+      `</tbody>`;
   }
 
   /* Gráfico */
@@ -825,8 +944,9 @@
       grid += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="${v === 0 ? 1.5 : 1}" ${v === 0 ? '' : 'stroke-dasharray="2 4"'}/>`;
       grid += `<text x="${m.l - 10}" y="${y(v) + 4}" text-anchor="end">${compact(v)}</text>`;
     }
-    [1, 100, 200, 300, 400].forEach(p => { grid += `<text x="${x(p)}" y="${H - 8}" text-anchor="middle">${p}</text>`; });
-    const cur = pts[st.p - 1];
+    [1, 100, 200, 300].forEach(p => { grid += `<text x="${x(p)}" y="${H - 8}" text-anchor="middle">${p}</text>`; });
+    grid += `<text x="${x(400)}" y="${H - 8}" text-anchor="end">400 prestadores</text>`;
+    const cur = pts[Math.min(st.p, maxP) - 1];
     const last = pts[pts.length - 1];
     let ya = y(last[1]), yb = y(last[2]);
     if (Math.abs(ya - yb) < 16) { const mid = (ya + yb) / 2; if (last[1] >= last[2]) { ya = mid - 8; yb = mid + 8; } else { ya = mid + 8; yb = mid - 8; } }
@@ -839,7 +959,6 @@
       <circle cx="${x(cur[0])}" cy="${y(cur[1])}" r="5" fill="var(--series-a)" stroke="var(--surface)" stroke-width="2"/>
       <text class="lbl" x="${W - m.r + 8}" y="${ya + 4}">Comissão</text>
       <text class="lbl" x="${W - m.r + 8}" y="${yb + 4}">Mensalidade</text>
-      <text x="${(m.l + W - m.r) / 2}" y="${H + 2}" text-anchor="middle" style="display:none">prestadores</text>
       <g id="hover" style="display:none">
         <line id="hv-l" y1="${m.t}" y2="${H - m.b}" stroke="var(--ink-2)"/>
         <circle id="hv-a" r="4" fill="var(--series-a)" stroke="var(--surface)" stroke-width="2"/>
@@ -849,6 +968,10 @@
     </svg><div class="tip" id="tip" hidden></div>`;
     chartData = { pts, x, y, m, W, maxP };
   }
+  function hideTip() {
+    const hv = chartEl.querySelector('#hover'); if (hv) hv.style.display = 'none';
+    const tip = chartEl.querySelector('#tip'); if (tip) tip.hidden = true;
+  }
   chartEl.addEventListener('pointermove', e => {
     if (!chartData || !e.target.closest('#hit')) return hideTip();
     const { pts, x, y, m, W, maxP } = chartData;
@@ -856,31 +979,24 @@
     const sx = (e.clientX - rect.left) * (W / rect.width);
     const p = Math.max(1, Math.min(maxP, Math.round(1 + (sx - m.l) / (W - m.l - m.r) * (maxP - 1))));
     const d = pts[p - 1];
-    const hv = chartEl.querySelector('#hover'); hv.style.display = '';
-    chartEl.querySelector('#hv-l').setAttribute('x1', x(p)); chartEl.querySelector('#hv-l').setAttribute('x2', x(p));
+    chartEl.querySelector('#hover').style.display = '';
+    const l = chartEl.querySelector('#hv-l'); l.setAttribute('x1', x(p)); l.setAttribute('x2', x(p));
     const a = chartEl.querySelector('#hv-a'), b = chartEl.querySelector('#hv-b');
     a.setAttribute('cx', x(p)); a.setAttribute('cy', y(d[1])); b.setAttribute('cx', x(p)); b.setAttribute('cy', y(d[2]));
     const tip = chartEl.querySelector('#tip'); tip.hidden = false;
     tip.innerHTML = `<b>${p} prestadores</b><div class="tr"><span class="sw" style="background:var(--series-a)"></span>Comissão ${brl(d[1])}</div><div class="tr"><span class="sw" style="background:var(--series-b)"></span>Mensalidade ${brl(d[2])}</div>`;
     const scale = rect.width / W;
-    const left = Math.max(70, Math.min(rect.width - 70, x(p) * scale));
-    tip.style.left = left + 'px';
+    tip.style.left = Math.max(70, Math.min(rect.width - 70, x(p) * scale)) + 'px';
     tip.style.top = (Math.min(y(d[1]), y(d[2])) * scale - 10) + 'px';
   });
-  function hideTip() {
-    const hv = chartEl.querySelector('#hover'); if (hv) hv.style.display = 'none';
-    const tip = chartEl.querySelector('#tip'); if (tip) tip.hidden = true;
-  }
   chartEl.addEventListener('pointerleave', hideTip);
 
   Object.values(inputs).forEach(el => el.addEventListener('input', update));
   document.querySelectorAll('[data-preset]').forEach(b => b.addEventListener('click', () => {
-    const pr = PRESETS[b.dataset.preset];
-    inputs.p.value = pr.p; inputs.s.value = pr.s; inputs.t.value = pr.t; update();
+    const st = read();
+    inputs.p.value = Math.max(1, Math.round(+b.dataset.preset / (st.s * st.t)));
+    update();
   }));
-  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { drawChart(read()); fitProto(); }, 80); });
-
-  $('fact-fixed').textContent = 'a partir de ≈ ' + brl(fixedFor(TIERS[0]));
 
   /* Navegação: seção ativa */
   const nav = $('nav');
@@ -904,15 +1020,20 @@
   }
   window.addEventListener('scroll', spy, { passive: true });
 
-  /* Protótipo: fixo, minimizado ou ampliado */
+  /* Protótipo: fixo ao lado, minimizado ou ampliado. Ele se ajusta sozinho ao tamanho do quadro. */
   const body = document.body;
-  const frame = $('proto-frame'), fit = $('proto-fit');
-  frame.style.width = PROTO_W + 'px'; frame.style.height = PROTO_H + 'px';
+  const frame = $('proto-frame');
   const wide = () => window.matchMedia('(min-width: 1080px)').matches;
   let pref = 'docked';
   try { pref = localStorage.getItem('proto-mode') || 'docked'; } catch (e) {}
   let lastFocus = null;
 
+  function fitProto() {
+    const h = body.dataset.proto === 'full'
+      ? window.innerHeight - 110
+      : Math.min(900, window.innerHeight - nav.offsetHeight - 150);
+    frame.style.height = Math.max(440, h) + 'px';
+  }
   function setMode(mode) {
     if (mode === 'full') lastFocus = document.activeElement;
     body.dataset.proto = mode;
@@ -922,29 +1043,15 @@
     if (mode === 'full') $('proto-close').focus();
     else if (lastFocus && document.contains(lastFocus)) { lastFocus.focus(); lastFocus = null; }
   }
-  function fitProto() {
-    const mode = body.dataset.proto;
-    let availH, availW;
-    if (mode === 'full') {
-      availH = window.innerHeight - 120;
-      availW = Math.min(window.innerWidth - 32, 520);
-    } else {
-      const top = nav.offsetHeight + 20;
-      availH = window.innerHeight - top - 130;
-      availW = ($('proto').clientWidth || 400) - 38;
-    }
-    const s = Math.max(0.4, Math.min(1, availH / PROTO_H, availW / PROTO_W));
-    frame.style.transform = `scale(${s})`;
-    fit.style.width = Math.round(PROTO_W * s) + 'px';
-    fit.style.height = Math.round(PROTO_H * s) + 'px';
-    fit.style.borderRadius = Math.round(56 * s) + 'px';
-  }
-
   $('proto-min').addEventListener('click', () => setMode('min'));
   $('proto-max').addEventListener('click', () => setMode('full'));
   $('proto-close').addEventListener('click', () => setMode(wide() ? pref : 'min'));
   $('proto-pill').addEventListener('click', () => setMode(wide() ? 'docked' : 'full'));
-  $('proto-reload').addEventListener('click', () => { frame.src = frame.src; });
+  $('proto-reload').addEventListener('click', () => {
+    try { localStorage.removeItem(PROTO_KEY); } catch (e) {}
+    try { frame.contentWindow.localStorage.removeItem(PROTO_KEY); } catch (e) {}
+    frame.src = frame.getAttribute('src');
+  });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && body.dataset.proto === 'full') $('proto-close').click(); });
   $('proto-panel').addEventListener('click', e => { if (body.dataset.proto === 'full' && e.target === e.currentTarget) $('proto-close').click(); });
 
@@ -953,11 +1060,13 @@
   try { framed = window.self !== window.top; } catch (e) {}
   if (!framed) { const pb = $('print-btn'); pb.hidden = false; pb.addEventListener('click', () => window.print()); }
 
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { setNavH(); drawChart(read()); fitProto(); }, 80); });
+
   body.dataset.proto = pref === 'min' ? 'min' : 'docked';
   update();
   fitProto();
   spy();
   window.addEventListener('load', () => { setNavH(); fitProto(); drawChart(read()); });
-  if (location.hash && document.querySelector(location.hash)) setTimeout(() => document.querySelector(location.hash).scrollIntoView(), 50);
+  if (/^#[\w.~-]+$/.test(location.hash) && document.querySelector(location.hash)) setTimeout(() => document.querySelector(location.hash).scrollIntoView(), 50);
 })();
 </script>
